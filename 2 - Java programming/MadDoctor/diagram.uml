@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-45.0" y="48.5">space.nixus.maddoc.Player</node>
+    <node x="-45.0" y="-15.0">space.nixus.maddoc.Room</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="257.0" y="174.5" />
+  <SelectedNodes>
+    <node>space.nixus.maddoc.Room</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
