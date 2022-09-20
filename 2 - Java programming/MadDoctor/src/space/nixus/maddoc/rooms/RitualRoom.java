@@ -4,17 +4,13 @@ import space.nixus.maddoc.Player;
 import space.nixus.maddoc.Room;
 
 public class RitualRoom extends Room {
-    private static final String KEY = "ritual-room";
+    public static final String NAME = "ritual-room";
 
     private static final String[] LINKS = { "basement" };
 
-    public RitualRoom() {
-        super(false);
-    }
-
     @Override
-    public String getKey() {
-        return KEY;
+    public String getName() {
+        return NAME;
     }
 
     @Override
@@ -25,6 +21,12 @@ public class RitualRoom extends Room {
     @Override
     public void describe() {
 
+    }
+
+    @Override
+    public boolean isLit() {
+        var itm = getInventory().getItem("wall-torch");
+        return itm!=null && itm.hasFlags("lit");
     }
 
     @Override

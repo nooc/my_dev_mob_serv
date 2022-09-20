@@ -1,42 +1,48 @@
 package space.nixus.maddoc.items;
 
-import space.nixus.maddoc.GameItem;
-import space.nixus.maddoc.Player;
-import space.nixus.maddoc.Room;
+import space.nixus.maddoc.*;
 
-public class LightSwitch implements GameItem {
+public class LightSwitch extends GameItem {
 
-    private Room room;
-    private static final String NAME = "switch";
-
-    public LightSwitch(Room r) {
-        room = r;
+    public LightSwitch(boolean state) {
+        super();
+        if(state) {
+            setFlag("on");
+        }
     }
+    public static final String NAME = "light-switch";
 
-    @Override
     public String getName() {
         return NAME;
     }
 
-    @Override
-    public String getDescription(boolean lit) {
-        return "A light switch on the wall.";
+    public void describe(boolean lit, boolean carried) {
+        Game.fmt("There is a [%s] on the wall.", LightSwitch.NAME);
     }
 
-    @Override
     public boolean canUse(Player p) {
         return true;
     }
 
-    @Override
-    public boolean use(Player p) {
-        room.toggleLight();
-        System.out.println("You flip the light switch.");
-        return true;
+    public void use(Player p) {
+        if(hasFlags("on")) {
+            clearFlag("on");
+        }
+        else {
+            setFlag("on");
+        }
+        Game.fmt("You flip the light switch.");
     }
 
-    @Override
+    public void useOn(Player player, GameItem item) {
+        Manipulator.cantUnderstand();
+    }
+
     public boolean hideInShadow() {
         return false;
+    }
+
+    public boolean isStatic() {
+        return true;
     }
 }

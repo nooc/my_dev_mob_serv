@@ -1,22 +1,30 @@
 package space.nixus.maddoc.rooms;
 
+import space.nixus.maddoc.Game;
 import space.nixus.maddoc.Player;
 import space.nixus.maddoc.Room;
+import space.nixus.maddoc.items.Lighter;
 
 import java.io.Serializable;
 
 public final class EntryHall extends Room implements Serializable {
 
-    private static final String KEY = "entry-hall";
+    public static final String NAME = "entry-hall";
     private static final String[] LINKS = { "kitchen", "basement" };
 
     public EntryHall() {
-        super(true);
+        super();
+        inventory.init(new Lighter());
     }
 
     @Override
-    public String getKey() {
-        return KEY;
+    public boolean isLit() {
+        return true;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 
     @Override
@@ -26,8 +34,12 @@ public final class EntryHall extends Room implements Serializable {
 
     @Override
     public void describe() {
-        System.out.println("A small entry hall from where you can go to the [kitchen]" +
-                " or down to the [basement].");
+        Game.fmt("The entrance hall.\n" +
+                "The walls are worn and there is filth everywhere.\n" +
+                "From here you can continue to the [%s].\n" +
+                "There is a small staircase leading to the [%s].",
+                LivingRoom.NAME, Basement.NAME);
+        inventory.describe();
     }
 
     @Override

@@ -3,33 +3,19 @@ package space.nixus.maddoc;
 import java.io.Serializable;
 
 public abstract class Room implements Serializable {
+    protected final Inventory inventory;
 
-    protected final Inventory statInv;
-    protected final Inventory dynInv;
-    protected boolean hasLight;
-
-    protected Room(boolean lit) {
-        statInv = new Inventory();
-        dynInv = new Inventory();
-        hasLight = lit;
+    protected Room() {
+        inventory = new RoomInventory(this);
     }
 
-    public Inventory getDynInv() {
-        return dynInv;
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    public Inventory getStatInv() {
-        return statInv;
-    }
+    public abstract boolean isLit();
 
-    public boolean isLit() {
-        return hasLight;
-    }
-    public void toggleLight() {
-        hasLight = !hasLight;
-    }
-
-    public abstract String getKey();
+    public abstract String getName();
     public abstract String[] getLinks();
     public abstract void describe();
     public abstract boolean movingTo(Player p);

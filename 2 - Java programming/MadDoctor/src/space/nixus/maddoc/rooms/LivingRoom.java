@@ -2,18 +2,18 @@ package space.nixus.maddoc.rooms;
 
 import space.nixus.maddoc.Player;
 import space.nixus.maddoc.Room;
-import space.nixus.maddoc.items.LightSwitch;
-import space.nixus.maddoc.items.SeveredHead;
+import space.nixus.maddoc.items.GlassHeart;
 
-public class Kitchen extends Room {
+public class LivingRoom extends Room {
 
-    public static final String NAME = "kitchen";
-    private static final String[] LINKS = { "entry-hall" };
+    public static final String NAME = "living-room";
+    private static final String[] LINKS = { "entry-hall", "kitchen" };
 
-    public Kitchen() {
+    public LivingRoom() {
         super();
-        inventory.init(new LightSwitch(false), new SeveredHead());
+        inventory.init(new GlassHeart());
     }
+
     @Override
     public boolean isLit() {
         return true;
@@ -31,7 +31,7 @@ public class Kitchen extends Room {
 
     @Override
     public void describe() {
-        //TODO: Implement
+
     }
 
     @Override
