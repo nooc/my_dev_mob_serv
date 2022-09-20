@@ -1,13 +1,16 @@
 package space.nixus.maddoc;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class GameItem {
+public abstract class GameItem implements Serializable {
 
     private final Set<String> flags;
+    private boolean untouched;
 
     protected GameItem() {
+        untouched = false;
         flags = new HashSet<>();
     }
 
@@ -25,14 +28,14 @@ public abstract class GameItem {
     public final void clearFlag(String flg) {
         flags.remove(flg);
     }
+    public final void touch() { untouched = true;}
+    public final boolean isTouched() { return untouched; }
 
     public void handleEvent(String id) { }
 
     public abstract String getName();
 
-    public abstract void describe(boolean lit, boolean carried);
-
-    public abstract boolean canUse(Player p);
+    public abstract void describe();
 
     public abstract void use(Player p);
 

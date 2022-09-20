@@ -4,13 +4,18 @@ import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.Player;
+import space.nixus.maddoc.rooms.Basement;
 
 import java.io.Serializable;
 
-public class GasMask extends GameItem implements Serializable {
+public class DoorToBasement extends GameItem implements Serializable {
 
-    public static final String NAME = "gas-mask";
+    public static final String NAME = "door-to-basement";
 
+    public DoorToBasement() {
+        super();
+        setFlag("locked");
+    }
     @Override
     public String getName() {
         return NAME;
@@ -18,22 +23,16 @@ public class GasMask extends GameItem implements Serializable {
 
     @Override
     public void describe() {
-        if(isTouched()) {
-            Game.fmt("A gas mask.");
-        }
-        else {
-            Game.fmt("A gas mask is tucked under the sofa.");
-        }
+        Game.fmt("A simple gray door. Behind it there is a staircase to the basement.");
     }
 
     @Override
     public void use(Player p) {
-        if(hasFlags("worn")) {
-            Game.fmt("You are already wearing the mask.");
+        if(hasFlags("locked")) {
+            Game.fmt("It's locked.");
         }
-        else {
-            setFlag("worn");
-            Game.fmt("You put on the mask.");
+        else if(p.goTo(Basement.NAME)) {
+            Game.fmt("You open the door and take the stairs to the basement.");
         }
     }
 
@@ -44,11 +43,11 @@ public class GasMask extends GameItem implements Serializable {
 
     @Override
     public boolean hideInShadow() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isStatic() {
-        return false;
+        return true;
     }
 }

@@ -8,10 +8,14 @@ import space.nixus.maddoc.items.LeftFoot;
 import space.nixus.maddoc.items.LightSwitch;
 import space.nixus.maddoc.items.NarrowWoodenDoor;
 
-public class Basement extends Room {
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+
+public class Basement extends Room implements Serializable {
 
     public static final String NAME = "basement";
-    private static final String[] LINKS = { "entry-hall" };
+    private static final List<String> LINKS = Arrays.asList( EntryHall.NAME);
 
     public Basement() {
         super();
@@ -30,7 +34,7 @@ public class Basement extends Room {
     }
 
     @Override
-    public String[] getLinks() {
+    public List<String> getLinks() {
         return LINKS;
     }
 
@@ -40,14 +44,13 @@ public class Basement extends Room {
         Game.fmt("The basement.");
         if(isLit()) {
             Game.fmt("A damp, worn room with no windows.\n" +
-                    "There is filthy goo on the floor." +
-                    "In the back there is a narrow [%s].",NarrowWoodenDoor.NAME);
+                    "Some kind of sticky substance is covering the floor.");
         }
         else {
-            Game.fmt("It is too dark to see anything but a small\n" +
-                    "lantern hold at the base of the stairs to the basement");
+            Game.fmt("It is too dark to see much.");
         }
-        Game.fmt("A stair case leads to the [%s].", EntryHall.NAME);
+        Game.fmt("You can go back to the [%s].", EntryHall.NAME);
+        inventory.describe();
     }
 
     @Override
@@ -58,10 +61,5 @@ public class Basement extends Room {
         }
         Game.fmt("A pungent smell of poison and death keeps you from entering.");
         return false;
-    }
-
-    @Override
-    public boolean locked() {
-        return true;
     }
 }

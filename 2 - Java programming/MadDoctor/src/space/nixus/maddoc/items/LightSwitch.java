@@ -2,7 +2,9 @@ package space.nixus.maddoc.items;
 
 import space.nixus.maddoc.*;
 
-public class LightSwitch extends GameItem {
+import java.io.Serializable;
+
+public class LightSwitch extends GameItem implements Serializable {
 
     public LightSwitch(boolean state) {
         super();
@@ -16,12 +18,8 @@ public class LightSwitch extends GameItem {
         return NAME;
     }
 
-    public void describe(boolean lit, boolean carried) {
-        Game.fmt("There is a [%s] on the wall.", LightSwitch.NAME);
-    }
-
-    public boolean canUse(Player p) {
-        return true;
+    public void describe() {
+        Game.fmt("There is a light switch on the wall.");
     }
 
     public void use(Player p) {

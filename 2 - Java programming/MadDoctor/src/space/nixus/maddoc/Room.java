@@ -1,6 +1,7 @@
 package space.nixus.maddoc;
 
 import java.io.Serializable;
+import java.util.List;
 
 public abstract class Room implements Serializable {
     protected final Inventory inventory;
@@ -16,8 +17,10 @@ public abstract class Room implements Serializable {
     public abstract boolean isLit();
 
     public abstract String getName();
-    public abstract String[] getLinks();
+
+    public abstract List<String> getLinks();
+
     public abstract void describe();
+
     public abstract boolean movingTo(Player p);
-    public abstract boolean locked();
 }

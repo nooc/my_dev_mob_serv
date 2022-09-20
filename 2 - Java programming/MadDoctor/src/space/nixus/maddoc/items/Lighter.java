@@ -4,7 +4,9 @@ import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Player;
 
-public class Lighter extends GameItem {
+import java.io.Serializable;
+
+public class Lighter extends GameItem implements Serializable {
 
     public static final String NAME = "lighter";
 
@@ -14,13 +16,13 @@ public class Lighter extends GameItem {
     }
 
     @Override
-    public void describe(boolean lit, boolean carried) {
-        Game.fmt("An ordinary [%s].",NAME);
-    }
-
-    @Override
-    public boolean canUse(Player p) {
-        return true;
+    public void describe() {
+        if(isTouched()) {
+            Game.fmt("An ordinary lighter.");
+        }
+        else {
+            Game.fmt("On a stool lies what looks to be a lighter.");
+        }
     }
 
     @Override
@@ -30,7 +32,7 @@ public class Lighter extends GameItem {
 
     @Override
     public void useOn(Player player, GameItem item) {
-        if(item.hasFlags("can_burn")) {
+        if (item.hasFlags("can_burn")) {
             item.handleEvent("burn");
         }
     }

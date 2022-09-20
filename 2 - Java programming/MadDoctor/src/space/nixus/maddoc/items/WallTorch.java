@@ -5,24 +5,29 @@ import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.Player;
 
-public class WallTorch extends GameItem {
+import java.io.Serializable;
+
+public class WallTorch extends GameItem implements Serializable {
+
     public static final String NAME = "wall-torch";
+
     public WallTorch() {
         super();
         setFlag("can_burn");
     }
+
     @Override
     public String getName() {
         return "wall-torch";
     }
 
     @Override
-    public void describe(boolean lit, boolean carried) {
-        if(lit) {
+    public void describe() {
+        if(hasFlags("lit")) {
             Game.fmt("A lit wall torch giving off yellowish light.");
         }
         else {
-            Game.fmt("A barely visible, unlit wall torch.");
+            Game.fmt("A barely visible and unlit wall torch.");
         }
     }
 
@@ -38,11 +43,6 @@ public class WallTorch extends GameItem {
                 setFlag("lit");
             }
         }
-    }
-
-    @Override
-    public boolean canUse(Player p) {
-        return false;
     }
 
     @Override

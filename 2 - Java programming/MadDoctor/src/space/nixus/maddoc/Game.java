@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 /**
  * MadDoctor
- *
- *
  */
 public class Game {
     public static void main(String[] args) {
@@ -15,13 +13,13 @@ public class Game {
         player = Manipulator.loadGame();
         Scanner scan = new Scanner(System.in);
 
-        while(true) {
-            fmt0("[%s]\n>>> ", player.getCurrentRoom().getName());
+        while (true) {
+            fmt0("\n[%s] > ", player.getCurrentRoom().getName());
             String cmdLine = scan.nextLine().trim().toLowerCase();
             String[] cmds = cmdLine.replaceAll("\\s+", " ").split(" ");
             var cmd = cmds[0];
 
-            if(cmd.equals("help")) {
+            if (cmd.equals("help")) {
                 fmt("GAME INTERFACE:");
                 fmt("quit - Quit the game.");
                 fmt("save - Save the game.");
@@ -33,42 +31,36 @@ public class Game {
                 fmt("drop <item> - Drop item in current room.");
                 fmt("goto <target> - Move to target.");
 
-            }
-            else if(cmd.equals("get") && cmds.length == 2) {
+            } else if (cmd.equals("get") && cmds.length == 2) {
                 Manipulator.getItem(player, cmds[1]);
-            }
-            else if(cmd.equals("use") && (cmds.length==2 || (cmds.length==4 && cmds[2].equals("on")))) {
-                if(cmds.length==2) {
+            } else if (cmd.equals("use") && (cmds.length == 2 || (cmds.length == 4 && cmds[2].equals("on")))) {
+                if (cmds.length == 2) {
                     Manipulator.useItem(player, cmds[1]);
-                }
-                else {
+                } else {
                     Manipulator.useItemOn(player, cmds[1], cmds[3]);
                 }
-            }
-            else if(cmd.equals("lookat") && cmds.length == 2) {
-                Manipulator.lookAt(player, cmds[1]);
-            }
-            else if(cmd.equals("goto") && cmds.length==2) {
+            } else if (cmd.equals("lookat") && (cmds.length == 2 || cmds.length == 1)) {
+                Manipulator.lookAt(player, cmds.length == 2 ? cmds[1] : "room");
+            } else if (cmd.equals("goto") && cmds.length == 2) {
                 Manipulator.moveTo(player, cmds[1]);
-            }
-            else if (cmd.equals("save")) {
+            } else if (cmd.equals("save")) {
                 Manipulator.saveGame(player);
-            }
-            else if(cmd.equals("quit")) {
+            } else if (cmd.equals("quit")) {
                 System.out.println("BYE");
                 break;
-            }
-            else {
+            } else {
                 Manipulator.cantUnderstand();
             }
         }
     }
-    public static void fmt(String format, Object...params) {
+
+    public static void fmt(String format, Object... params) {
 
         System.out.format(format, params);
         System.out.println();
     }
-    public static void fmt0(String format, Object...params) {
+
+    public static void fmt0(String format, Object... params) {
 
         System.out.format(format, params);
     }

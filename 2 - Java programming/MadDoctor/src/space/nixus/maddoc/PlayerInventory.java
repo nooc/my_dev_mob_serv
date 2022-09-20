@@ -1,8 +1,8 @@
 package space.nixus.maddoc;
 
-import space.nixus.maddoc.Inventory;
+import java.io.Serializable;
 
-public class PlayerInventory extends Inventory {
+public class PlayerInventory extends Inventory implements Serializable {
 
     public static final String TYPE = "player";
     private Player player;
@@ -14,12 +14,14 @@ public class PlayerInventory extends Inventory {
     public void describe() {
         Game.fmt("---INVENTORY---");
         var lit = player.getCurrentRoom().isLit();
-        for (var e: content.entrySet()) {
-            Game.fmt0("%s: ",e.getKey());
-            e.getValue().describe(lit, true);
+        for (var e : content.entrySet()) {
+            Game.fmt0("[%s]: ", e.getKey());
+            e.getValue().describe();
         }
         Game.fmt("---------------");
     }
 
-    public String invType() { return TYPE; }
+    public String invType() {
+        return TYPE;
+    }
 }

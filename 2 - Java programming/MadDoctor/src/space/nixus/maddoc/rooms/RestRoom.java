@@ -3,23 +3,23 @@ package space.nixus.maddoc.rooms;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.Player;
 import space.nixus.maddoc.Room;
-import space.nixus.maddoc.items.BasementKey;
 import space.nixus.maddoc.items.LightSwitch;
-import space.nixus.maddoc.items.SeveredHead;
+import space.nixus.maddoc.items.SpellBook;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class Kitchen extends Room implements Serializable {
+public class RestRoom extends Room implements Serializable {
 
-    public static final String NAME = "kitchen";
-    private static final List<String> LINKS = Arrays.asList(LivingRoom.NAME);
+    public static final String NAME = "rest-room";
+    public static final List<String> LINKS = Arrays.asList(EntryHall.NAME);
 
-    public Kitchen() {
+    public RestRoom() {
         super();
-        inventory.init(new LightSwitch(false), new SeveredHead(), new BasementKey());
+        inventory.init(new LightSwitch(false), new SpellBook());
     }
+
     @Override
     public boolean isLit() {
         return inventory.getItem(LightSwitch.NAME).hasFlags("on");
@@ -37,16 +37,15 @@ public class Kitchen extends Room implements Serializable {
 
     @Override
     public void describe() {
-        Game.fmt("The kitchen.");
+        Game.fmt("The rest room.");
         if(isLit()) {
-            Game.fmt("A standard kitchen on the older side. All the surfaces are\n" +
-                    "filthy, the oven and fridge doors are left open and the\n" +
-                    "kitchen sink is full of reddish water.");
+            Game.fmt("Your average public rest room.\n" +
+                    "Not so sanitary...");
         }
         else {
-            Game.fmt("It is too dark here.");
+            Game.fmt("You need light.");
         }
-        Game.fmt("You can go back to the [%s].", LivingRoom.NAME);
+        Game.fmt("You can go back to the [%s].", EntryHall.NAME);
         inventory.describe();
     }
 

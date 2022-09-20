@@ -1,9 +1,10 @@
 package space.nixus.maddoc.items;
 
-import space.nixus.maddoc.GameItem;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.Game;
 
-public class LeftFoot extends BodyPart {
+import java.io.Serializable;
+
+public class LeftFoot extends BodyPart implements Serializable {
 
     public static final String NAME = "left-foot";
 
@@ -13,7 +14,12 @@ public class LeftFoot extends BodyPart {
     }
 
     @Override
-    public void describe(boolean lit, boolean carried) {
-
+    public void describe() {
+        if(isTouched()) {
+            Game.fmt("A severed and bruised left foot of a female.");
+        }
+        else {
+            Game.fmt("In one of the corners lies a severed left foot.");
+        }
     }
 }

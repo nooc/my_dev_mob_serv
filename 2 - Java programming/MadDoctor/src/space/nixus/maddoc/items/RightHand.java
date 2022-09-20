@@ -1,9 +1,13 @@
 package space.nixus.maddoc.items;
 
+import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Player;
 
-public class RightHand extends BodyPart {
+import java.io.Serializable;
+
+public class RightHand extends BodyPart implements Serializable {
+
     public static final String NAME = "right-hand";
 
     @Override
@@ -12,7 +16,12 @@ public class RightHand extends BodyPart {
     }
 
     @Override
-    public void describe(boolean lit, boolean carried) {
-
+    public void describe() {
+        if(isTouched()) {
+            Game.fmt("A severed female hand with broken nails.");
+        }
+        else {
+            Game.fmt("A severed female hand with broken nails.");
+        }
     }
 }

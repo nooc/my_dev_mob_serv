@@ -5,7 +5,10 @@ import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.Player;
 
-public class BasementKey extends GameItem {
+import java.io.Serializable;
+
+public class BasementKey extends GameItem implements Serializable {
+
     public static final String NAME = "basement-key";
 
     @Override
@@ -14,13 +17,13 @@ public class BasementKey extends GameItem {
     }
 
     @Override
-    public void describe(boolean lit, boolean carried) {
-        Game.fmt("The basement door key.");
-    }
-
-    @Override
-    public boolean canUse(Player p) {
-        return true;
+    public void describe() {
+        if(isTouched()) {
+            Game.fmt("The basement door key.");
+        }
+        else {
+            Game.fmt("On the kitchen table lies the basement door key.");
+        }
     }
 
     @Override
@@ -30,7 +33,14 @@ public class BasementKey extends GameItem {
 
     @Override
     public void useOn(Player player, GameItem item) {
-
+        if(item.getName().equals(DoorToBasement.NAME)) {
+            item.clearFlag("locked");
+            player.getInventory().discardItem(NAME);
+            Game.fmt("You unlocked the door.");
+        }
+        else {
+            Manipulator.cantUnderstand();
+        }
     }
 
     @Override

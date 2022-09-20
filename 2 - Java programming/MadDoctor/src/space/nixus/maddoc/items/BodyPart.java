@@ -5,12 +5,9 @@ import space.nixus.maddoc.Inventory;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.Player;
 
-public abstract class BodyPart extends GameItem {
+import java.io.Serializable;
 
-    @Override
-    public boolean canUse(Player p) {
-        return false;
-    }
+public abstract class BodyPart extends GameItem implements Serializable {
 
     @Override
     public void use(Player p) {
