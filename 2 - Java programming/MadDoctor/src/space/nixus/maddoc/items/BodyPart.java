@@ -1,27 +1,31 @@
 package space.nixus.maddoc.items;
 
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 
-import java.io.Serializable;
-
+/**
+ * Base class for body parts.
+ */
 public abstract class BodyPart extends GameItem {
-
     @Override
-    public void use(PlayerContext p) {
+    public void use(PlayerContext ctx) {
         Manipulator.cantUnderstand();
     }
 
+    /**
+     * Use body part on ritual table.
+     * Sets flag on RitualTable and discards this item.
+     * @param ctx PlayerContext
+     * @param item RitualTable
+     */
     @Override
-    public void useOn(PlayerContext player, GameItem item) {
+    public void useOn(PlayerContext ctx, GameItem item) {
         // set flag on table and discard this item
-        if(item.getName().equals(RitualTable.NAME)) {
+        if (item.getName().equals(RitualTable.NAME)) {
             item.setFlag(getName());
-            player.getInventory().discardItem(getName());
+            ctx.getInventory().discardItem(getName());
             Game.fmt("You place the %s on the %s.",
                     getName(), RitualTable.NAME);
         }

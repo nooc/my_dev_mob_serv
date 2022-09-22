@@ -4,17 +4,18 @@ import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.Room;
-import space.nixus.maddoc.items.DoorToBasement;
+import space.nixus.maddoc.items.BasementDoor;
 import space.nixus.maddoc.items.Lighter;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 public final class EntryHall extends Room {
 
+    /** Name/id */
     public static final String NAME = "entry-hall";
-    private static final List<String> LINKS = Arrays.asList( LivingRoom.NAME, RestRoom.NAME );
+    /** List of room connections. */
+    private static final List<String> LINKS = Arrays.asList(LivingRoom.NAME, RestRoom.NAME);
 
     @Override
     public boolean isLit() {
@@ -45,10 +46,9 @@ public final class EntryHall extends Room {
         return true;
     }
 
-    public void load(JsonObject cfg) throws Exception{
-        if(cfg==null) {
-            inventory.init(new Lighter(), new DoorToBasement());
-        }
-        else super.load(cfg);
+    public void load(JsonObject cfg) throws Exception {
+        if (cfg == null) {
+            inventory.init(new Lighter(), new BasementDoor());
+        } else super.load(cfg);
     }
 }

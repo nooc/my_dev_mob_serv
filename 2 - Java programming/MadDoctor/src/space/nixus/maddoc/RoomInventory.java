@@ -1,12 +1,8 @@
 package space.nixus.maddoc;
 
-import java.io.Serializable;
-
-public class RoomInventory extends Inventory implements Serializable {
-
-    public static final String TYPE = "room";
-
-    private Room room;
+public class RoomInventory extends Inventory {
+    /** Room of this inventory. */
+    private final Room room;
 
     public RoomInventory(Room room) {
         super();
@@ -18,15 +14,9 @@ public class RoomInventory extends Inventory implements Serializable {
         if (!content.isEmpty()) {
             var lit = room.isLit();
             for (var i : content.entrySet()) {
-                if(i.getValue().hideInShadow() && !lit) continue;
-
-                Game.fmt0("[%s]: ", i.getKey());
+                if (i.getValue().hideInShadow() && !lit) continue;
                 i.getValue().describe();
             }
         }
-    }
-
-    public String invType() {
-        return TYPE;
     }
 }

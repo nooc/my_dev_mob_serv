@@ -7,16 +7,16 @@ import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.GasMask;
 import space.nixus.maddoc.items.LeftFoot;
 import space.nixus.maddoc.items.LightSwitch;
-import space.nixus.maddoc.items.NarrowWoodenDoor;
+import space.nixus.maddoc.items.WoodenDoor;
 
-import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 public class Basement extends Room {
 
+    /** Name/id */
     public static final String NAME = "basement";
-    private static final List<String> LINKS = Arrays.asList( EntryHall.NAME);
+    /** List of room connections. */
+    private static final List<String> LINKS = List.of(EntryHall.NAME);
 
     @Override
     public boolean isLit() {
@@ -38,11 +38,10 @@ public class Basement extends Room {
     public void describe() {
 
         Game.fmt("The basement.");
-        if(isLit()) {
+        if (isLit()) {
             Game.fmt("A damp, worn room with no windows.\n" +
                     "Some kind of sticky substance is covering the floor.");
-        }
-        else {
+        } else {
             Game.fmt("It is too dark to see much.");
         }
         Game.fmt("You can go back to the [%s].", EntryHall.NAME);
@@ -52,7 +51,7 @@ public class Basement extends Room {
     @Override
     public boolean movingTo(PlayerContext p) {
         var itm = p.getInventory().getItem(GasMask.NAME);
-        if(itm!=null && itm.hasFlags("worn") ) {
+        if (itm != null && itm.hasFlags("worn")) {
             return true;
         }
         Game.fmt("A pungent smell of poison and death keeps you from entering.");
@@ -60,9 +59,8 @@ public class Basement extends Room {
     }
 
     public void load(JsonObject cfg) throws Exception {
-        if(cfg==null) {
-            inventory.init(new LightSwitch(), new LeftFoot(), new NarrowWoodenDoor());
-        }
-        else super.load(cfg);
+        if (cfg == null) {
+            inventory.init(new LightSwitch(), new LeftFoot(), new WoodenDoor());
+        } else super.load(cfg);
     }
 }

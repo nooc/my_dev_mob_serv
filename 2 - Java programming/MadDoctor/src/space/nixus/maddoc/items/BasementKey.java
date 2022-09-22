@@ -5,8 +5,6 @@ import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 
-import java.io.Serializable;
-
 public class BasementKey extends GameItem {
 
     public static final String NAME = "basement-key";
@@ -18,11 +16,10 @@ public class BasementKey extends GameItem {
 
     @Override
     public void describe() {
-        if(isTouched()) {
-            Game.fmt("The basement door key.");
-        }
-        else {
-            Game.fmt("On the kitchen table lies the basement door key.");
+        if (hasFlags("touched")) {
+            Game.fmt("[%s] for the basement door.", NAME);
+        } else {
+            Game.fmt("On the kitchen table lies the [%s].", NAME);
         }
     }
 
@@ -31,14 +28,19 @@ public class BasementKey extends GameItem {
         Manipulator.cantUnderstand();
     }
 
+    /**
+     * This key can be used on DoorToBasement.
+     * Once used, unlocks door and discards key.
+     * @param player Context
+     * @param item Target
+     */
     @Override
     public void useOn(PlayerContext player, GameItem item) {
-        if(item.getName().equals(DoorToBasement.NAME)) {
+        if (item.getName().equals(BasementDoor.NAME)) {
             item.clearFlag("locked");
             player.getInventory().discardItem(NAME);
             Game.fmt("You unlocked the door.");
-        }
-        else {
+        } else {
             Manipulator.cantUnderstand();
         }
     }

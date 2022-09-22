@@ -1,12 +1,8 @@
 package space.nixus.maddoc.items;
 
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.PlayerContext;
-
-import java.io.Serializable;
 
 public class Lighter extends GameItem {
 
@@ -19,11 +15,10 @@ public class Lighter extends GameItem {
 
     @Override
     public void describe() {
-        if(isTouched()) {
-            Game.fmt("An ordinary lighter.");
-        }
-        else {
-            Game.fmt("On a stool lies what looks to be a lighter.");
+        if (hasFlags("touched")) {
+            Game.fmt("An ordinary [%s].", NAME);
+        } else {
+            Game.fmt("On a stool lies what looks to be a [%s].", NAME);
         }
     }
 
@@ -35,7 +30,7 @@ public class Lighter extends GameItem {
     @Override
     public void useOn(PlayerContext player, GameItem item) {
         if (item.hasFlags("can-burn")) {
-            item.handleEvent(player,"burn");
+            item.handleEvent(player, "burn");
         }
     }
 

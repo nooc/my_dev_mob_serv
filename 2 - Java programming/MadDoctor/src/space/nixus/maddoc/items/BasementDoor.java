@@ -7,15 +7,14 @@ import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.rooms.Basement;
 
-import java.io.Serializable;
+public class BasementDoor extends GameItem {
 
-public class DoorToBasement extends GameItem {
+    public static final String NAME = "basement-door";
 
-    public static final String NAME = "door-to-basement";
-
-    public DoorToBasement() {
+    public BasementDoor() {
         super();
     }
+
     @Override
     public String getName() {
         return NAME;
@@ -23,18 +22,23 @@ public class DoorToBasement extends GameItem {
 
     @Override
     public void describe() {
-        Game.fmt("A simple gray door. Behind it there is a staircase to the basement.");
+
+        Game.fmt("You see a simple gray [%s] leading to the basement.", NAME);
     }
 
+    /**
+     * Using this door will take the player to the basement
+     * if unlocked.
+     * @param ctx Context
+     */
     @Override
-    public void use(PlayerContext p) {
-        if(hasFlags("locked")) {
+    public void use(PlayerContext ctx) {
+        if (hasFlags("locked")) {
             Game.fmt("It's locked.");
-        }
-        else if(p.goTo(Basement.NAME)) {
+        } else if (ctx.goTo(Basement.NAME)) {
             Game.fmt("You open the door and take the stairs to the basement.");
         }
-        touch();
+        setFlag("touched");
     }
 
     @Override
@@ -53,8 +57,10 @@ public class DoorToBasement extends GameItem {
     }
 
     @Override
-    public void load(JsonObject cfg) {
-        super.load(cfg);
-        if(cfg == null) { setFlag("locked"); }
+    public void loadState(JsonObject cfg) {
+        super.loadState(cfg);
+        if (cfg == null) {
+            setFlag("locked");
+        }
     }
 }

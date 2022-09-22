@@ -6,9 +6,7 @@ import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.rooms.RitualRoom;
 
-import java.io.Serializable;
-
-public class NarrowWoodenDoor extends GameItem {
+public class WoodenDoor extends GameItem {
 
     public static final String NAME = "wooden-door";
 
@@ -19,15 +17,15 @@ public class NarrowWoodenDoor extends GameItem {
 
     @Override
     public void describe() {
-        Game.fmt("In the back there is a narrow wooden door.");
+        Game.fmt("In the back there is a narrow [%s].", NAME);
     }
 
     @Override
     public void use(PlayerContext p) {
-        if(p.goTo(RitualRoom.NAME)) {
+        if (p.goTo(RitualRoom.NAME)) {
             Game.fmt("You go through the narrow door.");
         }
-        touch();
+        setFlag("touched");
     }
 
     @Override

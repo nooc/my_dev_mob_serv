@@ -5,8 +5,6 @@ import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.PlayerContext;
 
-import java.io.Serializable;
-
 public class SpellBook extends GameItem {
 
     public static final String NAME = "spell-book";
@@ -18,11 +16,10 @@ public class SpellBook extends GameItem {
 
     @Override
     public void describe() {
-        if(isTouched()) {
-            Game.fmt("A book of spells for various rituals.");
-        }
-        else {
-            Game.fmt("Behind the toilet seat lies a book.");
+        if (hasFlags("touched")) {
+            Game.fmt("A [%s] for various rituals.", NAME);
+        } else {
+            Game.fmt("Behind the toilet seat lies a [%s].", NAME);
         }
     }
 
@@ -31,41 +28,47 @@ public class SpellBook extends GameItem {
         Game.fmt("You wouldn't know where to start.");
     }
 
+    /**
+     * Using the spell book on the ritual table will end the game if the
+     * ritual table is complete and the player is not wearing the gas mask.
+     * @param ctx Context
+     * @param item Target
+     */
     @Override
-    public void useOn(PlayerContext player, GameItem item) {
-        if(item.getName().equals(RitualTable.NAME)) {
-            if(! item.hasFlags(RightHand.NAME, LeftFoot.NAME, SeveredHead.NAME, GlassHeart.NAME ))
-            {
+    public void useOn(PlayerContext ctx, GameItem item) {
+        var mask = ctx.getInventory().getItem(GasMask.NAME);
+        if(mask!=null && mask.hasFlags("worn")) {
+            Game.fmt("You can not read the text when wearing the gas mask.");
+        }
+        else if (item.getName().equals(RitualTable.NAME)) {
+            if (!item.hasFlags(RightHand.NAME, LeftFoot.NAME, SeveredHead.NAME, GlassHeart.NAME)) {
                 Game.fmt("Something is missing from the ritual.");
-            }
-            else {
-                Game.fmt("You begin chanting the spell as described in the spell book.\n" +
-                        "A cold breeze sweeps across the room and the light is\n" +
-                        "suppressed by materialized darkness emanating from the body.\n" +
-                        "You head a horrid, unnatural roar and seconds there after the clattering\n" +
-                        "of something moving in the darkness. Before you can react, the thing\n" +
-                        "leaps up next to you and whispers in your ear, \"Wake up...\"\n\n" +
-                        "You wake up in your bed, drenched in sweat.\n\n" +
-                        "THE END");
+            } else {
+                Game.fmt(Game.ENDING);
                 Game.exit();
             }
-        }
-        else {
+        } else {
             Game.fmt("Nothing happens.");
         }
     }
 
     @Override
-    public void load(JsonObject cfg) {
-        super.load(cfg);
-        if(cfg == null) {
-            setFlag("can_burn");
+    public void loadState(JsonObject cfg) {
+        super.loadState(cfg);
+        if (cfg == null) {
+            setFlag("can_burn"); // add default flag
         }
     }
 
+    /**
+     * Burn this spell book. This will effectively prevent the player from
+     * completing the game.
+     * @param player Context
+     * @param id Event id
+     */
     @Override
     public void handleEvent(PlayerContext player, String id) {
-        if(id.equals("burn")) {
+        if (id.equals("burn")) {
             player.getInventory().discardItem(NAME);
             player.getCurrentRoom().getInventory().discardItem(NAME);
             Game.fmt("The spell book burns to ashes.");

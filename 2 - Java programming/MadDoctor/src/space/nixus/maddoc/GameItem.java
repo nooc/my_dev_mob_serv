@@ -7,47 +7,69 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class GameItem {
+/**
+ * Base class for game items.
+ */
+public abstract class GameItem implements GameStateIO{
 
+    /** Item flags. */
     private final Set<String> flags;
-    private boolean touched;
 
     protected GameItem() {
-        touched = false;
         flags = new HashSet<>();
     }
 
-    public final boolean hasFlags(String... flg) {
-        for (var f : flg) {
+    /**
+     * Test if this item has all the given flags.
+     * @param flgs
+     * @return True if all flags exist, else false.
+     */
+    public final boolean hasFlags(String... flgs) {
+        for (var f : flgs) {
             if (!flags.contains(f)) {
                 return false;
             }
         }
         return true;
     }
+
+    /**
+     * Set a flag.
+     * @param flg Flag
+     */
     public final void setFlag(String flg) {
         flags.add(flg);
     }
+
+    /**
+     * Clear a flag.
+     * @param flg Flag
+     */
     public final void clearFlag(String flg) {
         flags.remove(flg);
     }
-    public final void touch() { touched = true;}
-    public final boolean isTouched() { return touched; }
 
+    /**
+     * Handle an event.
+     * @param player Context
+     * @param id Event id
+     */
     public void handleEvent(PlayerContext player, String id) { }
 
-    public void save(JsonWriter writer) throws IOException {
-        if(!flags.isEmpty()) {
+    public void saveState(JsonWriter writer) throws IOException {
+        // write flags
+        if (!flags.isEmpty()) {
             writer.name("flags").beginArray();
-            for (var f : flags) { writer.value(f); }
+            for (var f : flags) {
+                writer.value(f);
+            }
             writer.endArray();
         }
-        writer.name("touched").value(touched);
     }
 
-    public void load(JsonObject cfg) {
-        if(cfg != null) {
-            touched = cfg.get("touched").getAsBoolean();
+    public void loadState(JsonObject cfg) {
+        // read flags
+        if (cfg != null) {
             if (cfg.has("flags")) {
                 var arr = cfg.get("flags").getAsJsonArray();
                 var i = arr.iterator();
@@ -57,15 +79,40 @@ public abstract class GameItem {
             }
         }
     }
+
+    /**
+     * Get item name.
+     * @return Name
+     */
     public abstract String getName();
 
+    /**
+     * Describe item to console.
+     */
     public abstract void describe();
 
-    public abstract void use(PlayerContext p);
+    /**
+     * Use item.
+     * @param ctx Context
+     */
+    public abstract void use(PlayerContext ctx);
 
-    public abstract void useOn(PlayerContext player, GameItem item);
+    /**
+     * Use item on target.
+     * @param ctx Context
+     * @param item Target
+     */
+    public abstract void useOn(PlayerContext ctx, GameItem item);
 
+    /**
+     * Test if item is hidden in the dark.
+     * @return true or false
+     */
     public abstract boolean hideInShadow();
 
+    /**
+     * Test if item is static (can't be transferred).
+     * @return true or false
+     */
     public abstract boolean isStatic();
 }

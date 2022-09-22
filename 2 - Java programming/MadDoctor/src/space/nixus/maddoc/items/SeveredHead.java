@@ -2,8 +2,6 @@ package space.nixus.maddoc.items;
 
 import space.nixus.maddoc.Game;
 
-import java.io.Serializable;
-
 public class SeveredHead extends BodyPart {
 
     public static final String NAME = "severed-head";
@@ -15,11 +13,10 @@ public class SeveredHead extends BodyPart {
 
     @Override
     public void describe() {
-        if(isTouched()) {
-            Game.fmt("An eyeless severed head of an old man.");
-        }
-        else {
-            Game.fmt("Floating in the kitchen sink you see an eyeless severed head of an old man.");
+        if (hasFlags("touched")) {
+            Game.fmt("An eyeless [%s] of an old man.", NAME);
+        } else {
+            Game.fmt("Floating in the kitchen sink you see an eyeless [%s] of an old man.", NAME);
         }
     }
 }

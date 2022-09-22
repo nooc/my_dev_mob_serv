@@ -7,13 +7,14 @@ import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.GasMask;
 import space.nixus.maddoc.items.GlassHeart;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 public class LivingRoom extends Room {
 
+    /** Name/id */
     public static final String NAME = "living-room";
+    /** List of room connections. */
     private static final List<String> LINKS = Arrays.asList(EntryHall.NAME, Kitchen.NAME);
 
     @Override
@@ -46,9 +47,8 @@ public class LivingRoom extends Room {
     }
 
     public void load(JsonObject cfg) throws Exception {
-        if(cfg==null) {
+        if (cfg == null) {
             inventory.init(new GlassHeart(), new GasMask());
-        }
-        else super.load(cfg);
+        } else super.load(cfg);
     }
 }

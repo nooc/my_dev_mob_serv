@@ -1,35 +1,34 @@
 package space.nixus.maddoc.items;
 
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
-import space.nixus.maddoc.*;
-
-import java.io.Serializable;
+import space.nixus.maddoc.Game;
+import space.nixus.maddoc.GameItem;
+import space.nixus.maddoc.Manipulator;
+import space.nixus.maddoc.PlayerContext;
 
 public class LightSwitch extends GameItem {
+
+    public static final String NAME = "light-switch";
 
     public LightSwitch() {
         super();
     }
-    public static final String NAME = "light-switch";
 
     public String getName() {
         return NAME;
     }
 
     public void describe() {
-        Game.fmt("There is a light switch on the wall.");
+        Game.fmt("There is a [%s] on the wall.", NAME);
     }
 
     public void use(PlayerContext p) {
-        if(hasFlags("on")) {
+        if (hasFlags("on")) {
             clearFlag("on");
-        }
-        else {
+        } else {
             setFlag("on");
         }
         Game.fmt("You flip the light switch.");
-        touch();
+        setFlag("touched");
     }
 
     public void useOn(PlayerContext player, GameItem item) {

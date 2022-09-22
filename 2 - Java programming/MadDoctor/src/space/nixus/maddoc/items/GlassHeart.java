@@ -2,8 +2,6 @@ package space.nixus.maddoc.items;
 
 import space.nixus.maddoc.Game;
 
-import java.io.Serializable;
-
 
 public class GlassHeart extends BodyPart {
 
@@ -16,11 +14,10 @@ public class GlassHeart extends BodyPart {
 
     @Override
     public void describe() {
-        if(isTouched()) {
-            Game.fmt("A red glass artifact shaped like a heart.");
-        }
-        else {
-            Game.fmt("A red heart shaped object lies on the floor.");
+        if (hasFlags("touched")) {
+            Game.fmt("A red [%s] artifact.", NAME);
+        } else {
+            Game.fmt("There is a red [%s] lying on the floor.", NAME);
         }
     }
 }

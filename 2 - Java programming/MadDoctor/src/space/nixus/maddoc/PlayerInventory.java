@@ -1,25 +1,20 @@
 package space.nixus.maddoc;
 
 public class PlayerInventory extends Inventory {
+    /** PlayerContext of inventory. */
+    private final PlayerContext ctx;
 
-    public static final String TYPE = "player";
-    private PlayerContext player;
-
-    public PlayerInventory(PlayerContext player) {
-        this.player = player;
+    public PlayerInventory(PlayerContext ctx) {
+        this.ctx = ctx;
     }
 
     public void describe() {
         Game.fmt("---INVENTORY---");
-        var lit = player.getCurrentRoom().isLit();
+        var lit = ctx.getCurrentRoom().isLit();
         for (var e : content.entrySet()) {
             Game.fmt0("[%s]: ", e.getKey());
             e.getValue().describe();
         }
         Game.fmt("---------------");
-    }
-
-    public String invType() {
-        return TYPE;
     }
 }

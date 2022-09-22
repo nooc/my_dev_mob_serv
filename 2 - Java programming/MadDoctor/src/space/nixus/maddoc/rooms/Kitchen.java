@@ -8,14 +8,14 @@ import space.nixus.maddoc.items.BasementKey;
 import space.nixus.maddoc.items.LightSwitch;
 import space.nixus.maddoc.items.SeveredHead;
 
-import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 public class Kitchen extends Room {
 
+    /** Name/id */
     public static final String NAME = "kitchen";
-    private static final List<String> LINKS = Arrays.asList(LivingRoom.NAME);
+    /** List of room connections. */
+    private static final List<String> LINKS = List.of(LivingRoom.NAME);
 
     @Override
     public boolean isLit() {
@@ -35,12 +35,11 @@ public class Kitchen extends Room {
     @Override
     public void describe() {
         Game.fmt("The kitchen.");
-        if(isLit()) {
+        if (isLit()) {
             Game.fmt("A standard kitchen on the older side. All the surfaces are\n" +
                     "filthy, the oven and fridge doors are left open and the\n" +
                     "kitchen sink is full of reddish water.");
-        }
-        else {
+        } else {
             Game.fmt("It is too dark here.");
         }
         Game.fmt("You can go back to the [%s].", LivingRoom.NAME);
@@ -53,9 +52,8 @@ public class Kitchen extends Room {
     }
 
     public void load(JsonObject cfg) throws Exception {
-        if(cfg==null) {
+        if (cfg == null) {
             inventory.init(new LightSwitch(), new SeveredHead(), new BasementKey());
-        }
-        else super.load(cfg);
+        } else super.load(cfg);
     }
 }

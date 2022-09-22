@@ -6,8 +6,6 @@ import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 
-import java.io.Serializable;
-
 public class WallTorch extends GameItem {
 
     public static final String NAME = "wall-torch";
@@ -19,22 +17,24 @@ public class WallTorch extends GameItem {
 
     @Override
     public void describe() {
-        if(hasFlags("lit")) {
-            Game.fmt("A lit wall torch giving off yellowish light.");
-        }
-        else {
-            Game.fmt("A barely visible and unlit wall torch.");
+        if (hasFlags("lit")) {
+            Game.fmt("A lit [%s] giving off yellowish light.", NAME);
+        } else {
+            Game.fmt("A barely visible and unlit [%s].", NAME);
         }
     }
 
+    /**
+     * Handle burn event by lighting this torch.
+     * @param player Context
+     * @param id Event id
+     */
     @Override
     public void handleEvent(PlayerContext player, String id) {
-        if(id.equals("burn"))
-        {
-            if(hasFlags("lit")) {
+        if (id.equals("burn")) {
+            if (hasFlags("lit")) {
                 Game.fmt("The torch is already lit.");
-            }
-            else {
+            } else {
                 Game.fmt("You light the torch.");
                 setFlag("lit");
             }
@@ -52,10 +52,10 @@ public class WallTorch extends GameItem {
     }
 
     @Override
-    public void load(JsonObject cfg) {
-        super.load(cfg);
-        if(cfg == null) {
-            setFlag("can_burn");
+    public void loadState(JsonObject cfg) {
+        super.loadState(cfg);
+        if (cfg == null) {
+            setFlag("can_burn"); // add default flag
         }
     }
 
