@@ -12,9 +12,13 @@ import java.util.List;
 
 public class LivingRoom extends Room {
 
-    /** Name/id */
+    /**
+     * Name/id
+     */
     public static final String NAME = "living-room";
-    /** List of room connections. */
+    /**
+     * List of room connections.
+     */
     private static final List<String> LINKS = Arrays.asList(EntryHall.NAME, Kitchen.NAME);
 
     @Override
@@ -46,9 +50,11 @@ public class LivingRoom extends Room {
         return true;
     }
 
-    public void load(JsonObject cfg) throws Exception {
+    @Override
+    public void loadState(JsonObject cfg) throws Exception {
+        super.loadState(cfg);
         if (cfg == null) {
             inventory.init(new GlassHeart(), new GasMask());
-        } else super.load(cfg);
+        }
     }
 }

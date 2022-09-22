@@ -16,7 +16,7 @@ public class GasMask extends GameItem {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("A [%s].", NAME);
         } else {
             Game.fmt("A [%s] is tucked under the sofa.", NAME);
@@ -25,15 +25,16 @@ public class GasMask extends GameItem {
 
     /**
      * Use gas mask to wear it or remove it.
+     *
      * @param ctx Context
      */
     @Override
     public void use(PlayerContext ctx) {
-        if (hasFlags("worn")) {
-            clearFlag("worn");
+        if (hasFlags(WORN)) {
+            clearFlag(WORN);
             Game.fmt("You remove the mask.");
         } else {
-            setFlag("worn");
+            setFlag(WORN);
             Game.fmt("You put on the mask.");
         }
     }

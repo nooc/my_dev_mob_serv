@@ -10,7 +10,11 @@ import java.util.HashMap;
  * Base class for inventories.
  */
 public abstract class Inventory implements GameStateIO {
-    /** Map of inventory items. */
+    protected static final String CONTENT_KEY = "content";
+
+    /**
+     * Map of inventory items.
+     */
     protected final HashMap<String, GameItem> content;
 
     protected Inventory() {
@@ -19,11 +23,13 @@ public abstract class Inventory implements GameStateIO {
 
     /**
      * Initialize inventory with items.
+     *
      * @param items
      */
     public void init(GameItem... items) {
         for (var item : items) {
             content.put(item.getName(), item);
+            item.loadState(null); // default
         }
     }
 
@@ -34,6 +40,7 @@ public abstract class Inventory implements GameStateIO {
 
     /**
      * Get item from inventory.
+     *
      * @param name Item id
      * @return GameItem
      */
@@ -43,7 +50,8 @@ public abstract class Inventory implements GameStateIO {
 
     /**
      * Move item from this inventory to target inventory.
-     * @param name Item id
+     *
+     * @param name   Item id
      * @param target inventory
      * @return success: true or false
      */
@@ -56,7 +64,7 @@ public abstract class Inventory implements GameStateIO {
         } else {
             content.remove(name);
             target.content.put(name, item);
-            item.setFlag("touched");
+            item.setFlag(GameItem.TOUCHED);
             // pickup or drop based on target type
             if (target instanceof PlayerInventory) {
                 Game.fmt("You pick up %s.", name);
@@ -70,6 +78,7 @@ public abstract class Inventory implements GameStateIO {
 
     /**
      * Discard item from inventory.
+     *
      * @param name Item id
      */
     public void discardItem(String name) {
@@ -82,7 +91,7 @@ public abstract class Inventory implements GameStateIO {
 
     public void saveState(JsonWriter writer) throws IOException {
         // write items to content property
-        writer.name("content").beginObject();
+        writer.name(CONTENT_KEY).beginObject();
         for (var ent : content.entrySet()) {
             var obj = ent.getValue();
             writer.name(obj.getClass().getName()).beginObject();
@@ -95,7 +104,7 @@ public abstract class Inventory implements GameStateIO {
     public void loadState(JsonObject cfg) throws Exception {
         if (cfg != null) {
             // read items from content property
-            var contentCfg = cfg.get("content").getAsJsonObject();
+            var contentCfg = cfg.get(CONTENT_KEY).getAsJsonObject();
             for (var item : contentCfg.entrySet()) {
                 // get item config
                 var itemCfg = item.getValue().getAsJsonObject();

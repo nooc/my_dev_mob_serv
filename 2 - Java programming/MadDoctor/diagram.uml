@@ -1,19 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement />
+  <OriginalElement>space.nixus.maddoc.rooms.Basement</OriginalElement>
   <nodes>
-    <node x="-45.0" y="48.5">space.nixus.maddoc.Player</node>
-    <node x="-45.0" y="-15.0">space.nixus.maddoc.Room</node>
+    <node x="181.00000000000006" y="338.00000000000017">space.nixus.maddoc.items.SeveredHead</node>
+    <node x="485.0" y="338.00000000000017">space.nixus.maddoc.items.GlassHeart</node>
+    <node x="342.0" y="437.00000000000006">space.nixus.maddoc.Room</node>
+    <node x="1628.0" y="212.00000000000017">space.nixus.maddoc.items.WallTorch</node>
+    <node x="1019.0" y="212.00000000000017">space.nixus.maddoc.items.LightSwitch</node>
+    <node x="1167.0" y="212.00000000000017">space.nixus.maddoc.items.BasementDoor</node>
+    <node x="1485.0" y="212.00000000000017">space.nixus.maddoc.items.Lighter</node>
+    <node x="260.0" y="607.0">space.nixus.maddoc.rooms.RestRoom</node>
+    <node x="266.00000000000006" y="223.00000000000017">space.nixus.maddoc.items.BodyPart</node>
+    <node x="92.0" y="607.0">space.nixus.maddoc.rooms.EntryHall</node>
+    <node x="1126.75" y="448.02420856610803">space.nixus.maddoc.PlayerContext</node>
+    <node x="1126.75" y="399.2621042830541">space.nixus.maddoc.Game</node>
+    <node x="14.298780487804947" y="98.50000000000017">space.nixus.maddoc.Inventory</node>
+    <node x="95.0" y="235.50000000000017">space.nixus.maddoc.PlayerInventory</node>
+    <node x="428.0" y="607.0">space.nixus.maddoc.rooms.RitualRoom</node>
+    <node x="409.0" y="212.00000000000017">space.nixus.maddoc.items.GasMask</node>
+    <node x="876.0" y="212.00000000000017">space.nixus.maddoc.items.SpellBook</node>
+    <node x="790.0" y="607.0">space.nixus.maddoc.rooms.Basement</node>
+    <node x="1126.75" y="543.786312849162">space.nixus.maddoc.Manipulator</node>
+    <node x="480.07926829268297" y="-14.99999999999983">space.nixus.maddoc.GameStateIO</node>
+    <node x="948.75" y="64.00000000000017">space.nixus.maddoc.GameItem</node>
+    <node x="1338.0" y="212.00000000000017">space.nixus.maddoc.items.RitualTable</node>
+    <node x="-76.0" y="607.0">space.nixus.maddoc.rooms.Kitchen</node>
+    <node x="342.00000000000006" y="338.00000000000017">space.nixus.maddoc.items.RightHand</node>
+    <node x="596.0" y="607.0">space.nixus.maddoc.rooms.LivingRoom</node>
+    <node x="-76.0" y="235.50000000000017">space.nixus.maddoc.RoomInventory</node>
+    <node x="552.0000000000001" y="212.00000000000017">space.nixus.maddoc.items.BasementKey</node>
+    <node x="45.0" y="338.00000000000017">space.nixus.maddoc.items.LeftFoot</node>
+    <node x="713.0000000000001" y="212.00000000000017">space.nixus.maddoc.items.WoodenDoor</node>
   </nodes>
   <notes />
-  <edges />
-  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="257.0" y="174.5" />
-  <SelectedNodes>
-    <node>space.nixus.maddoc.Room</node>
-  </SelectedNodes>
-  <Categories />
+  <edges>
+    <edge source="space.nixus.maddoc.items.RitualTable" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="1401.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.BodyPart" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="-5.6843418860808015E-14" y="-27.00000000000017" />
+      <point x="327.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.BasementDoor" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="1242.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.rooms.LivingRoom" target="space.nixus.maddoc.Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="670.0" y="582.0" />
+      <point x="418.0" y="582.0" />
+      <point x="0.0" y="59.99999999999994" />
+    </edge>
+    <edge source="space.nixus.maddoc.Inventory" target="space.nixus.maddoc.GameStateIO" relationship="REALIZATION">
+      <point x="2.1951219505922381E-4" y="-14.50000000000017" />
+      <point x="69.799" y="67.0" />
+      <point x="549.079" y="67.0" />
+      <point x="-2.6829268301753473E-4" y="14.49999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.RightHand" target="space.nixus.maddoc.items.BodyPart" relationship="GENERALIZATION">
+      <point x="-5.6843418860808015E-14" y="-27.00000000000017" />
+      <point x="403.5" y="314.0" />
+      <point x="327.5" y="314.0" />
+      <point x="-5.6843418860808015E-14" y="26.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.LeftFoot" target="space.nixus.maddoc.items.BodyPart" relationship="GENERALIZATION">
+      <point x="0.0" y="-27.00000000000017" />
+      <point x="103.0" y="314.0" />
+      <point x="327.5" y="314.0" />
+      <point x="-5.6843418860808015E-14" y="26.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.SpellBook" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="937.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.Lighter" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="1546.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.SeveredHead" target="space.nixus.maddoc.items.BodyPart" relationship="GENERALIZATION">
+      <point x="-5.6843418860808015E-14" y="-27.00000000000017" />
+      <point x="251.5" y="314.0" />
+      <point x="327.5" y="314.0" />
+      <point x="-5.6843418860808015E-14" y="26.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.rooms.Kitchen" target="space.nixus.maddoc.Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="-2.0" y="582.0" />
+      <point x="418.0" y="582.0" />
+      <point x="0.0" y="59.99999999999994" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.WallTorch" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="1689.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.rooms.RestRoom" target="space.nixus.maddoc.Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="334.0" y="582.0" />
+      <point x="418.0" y="582.0" />
+      <point x="0.0" y="59.99999999999994" />
+    </edge>
+    <edge source="space.nixus.maddoc.rooms.RitualRoom" target="space.nixus.maddoc.Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="502.0" y="582.0" />
+      <point x="418.0" y="582.0" />
+      <point x="0.0" y="59.99999999999994" />
+    </edge>
+    <edge source="space.nixus.maddoc.Room" target="space.nixus.maddoc.GameStateIO" relationship="REALIZATION">
+      <point x="-76.0" y="-5.6843418860808015E-14" />
+      <point x="-93.5" y="497.0" />
+      <point x="-93.5" y="145.0" />
+      <point x="455.5" y="145.0" />
+      <point x="455.5" y="67.0" />
+      <point x="549.079" y="67.0" />
+      <point x="-2.6829268301753473E-4" y="14.49999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.BasementKey" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="-1.1368683772161603E-13" y="-38.00000000000017" />
+      <point x="622.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.rooms.Basement" target="space.nixus.maddoc.Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="864.0" y="582.0" />
+      <point x="418.0" y="582.0" />
+      <point x="0.0" y="59.99999999999994" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.LightSwitch" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="1083.0" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.WoodenDoor" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="-1.1368683772161603E-13" y="-38.00000000000017" />
+      <point x="784.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.RoomInventory" target="space.nixus.maddoc.Inventory" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.50000000000017" />
+      <point x="-0.5" y="215.0" />
+      <point x="69.799" y="215.0" />
+      <point x="2.1951219505922381E-4" y="14.49999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.GameItem" target="space.nixus.maddoc.GameStateIO" relationship="REALIZATION">
+      <point x="-61.5" y="-1.7053025658242404E-13" />
+      <point x="455.5" y="113.0" />
+      <point x="455.5" y="67.0" />
+      <point x="549.079" y="67.0" />
+      <point x="-2.6829268301753473E-4" y="14.49999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.GasMask" target="space.nixus.maddoc.GameItem" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.00000000000017" />
+      <point x="470.5" y="188.0" />
+      <point x="1010.25" y="188.0" />
+      <point x="0.0" y="48.99999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.PlayerInventory" target="space.nixus.maddoc.Inventory" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.50000000000017" />
+      <point x="170.5" y="215.0" />
+      <point x="69.799" y="215.0" />
+      <point x="2.1951219505922381E-4" y="14.49999999999983" />
+    </edge>
+    <edge source="space.nixus.maddoc.rooms.EntryHall" target="space.nixus.maddoc.Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="166.0" y="582.0" />
+      <point x="418.0" y="582.0" />
+      <point x="0.0" y="59.99999999999994" />
+    </edge>
+    <edge source="space.nixus.maddoc.items.GlassHeart" target="space.nixus.maddoc.items.BodyPart" relationship="GENERALIZATION">
+      <point x="0.0" y="-27.00000000000017" />
+      <point x="546.5" y="314.0" />
+      <point x="327.5" y="314.0" />
+      <point x="-5.6843418860808015E-14" y="26.99999999999983" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7256756756756757" showDependencies="false" x="838.5" y="355.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
-  <VISIBILITY>private</VISIBILITY>
+  <VISIBILITY>packageLocal</VISIBILITY>
 </Diagram>
 

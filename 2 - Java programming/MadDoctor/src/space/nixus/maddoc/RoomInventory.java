@@ -1,7 +1,9 @@
 package space.nixus.maddoc;
 
 public class RoomInventory extends Inventory {
-    /** Room of this inventory. */
+    /**
+     * Room of this inventory.
+     */
     private final Room room;
 
     public RoomInventory(Room room) {

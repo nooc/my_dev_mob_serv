@@ -11,11 +11,21 @@ import java.util.HashMap;
  * Player context contains the whole game tree.
  */
 public class PlayerContext {
-    /** Player inventory. */
+    protected static final String CURR_ROOM_KEY = "current";
+    protected static final String INV_KEY = "inventory";
+    protected static final String ROOMS_KEY = "rooms";
+
+    /**
+     * Player inventory.
+     */
     private final Inventory inventory;
-    /** Map of all the rooms. */
+    /**
+     * Map of all the rooms.
+     */
     private HashMap<String, Room> roomDb;
-    /** Current room of player. */
+    /**
+     * Current room of player.
+     */
     private Room currentRoom;
 
     public PlayerContext() {
@@ -38,6 +48,7 @@ public class PlayerContext {
 
     /**
      * Add room helper.
+     *
      * @param room Room
      */
     private void addRoom(Room room) {
@@ -46,6 +57,7 @@ public class PlayerContext {
 
     /**
      * Get player inventory.
+     *
      * @return Player inventory
      */
     public Inventory getInventory() {
@@ -54,6 +66,7 @@ public class PlayerContext {
 
     /**
      * Get current room.
+     *
      * @return Room
      */
     public Room getCurrentRoom() {
@@ -62,6 +75,7 @@ public class PlayerContext {
 
     /**
      * Move player to room.
+     *
      * @param roomId Room id
      * @return success: true or false
      */
@@ -82,16 +96,16 @@ public class PlayerContext {
 
     public void save(JsonWriter writer) throws IOException {
         // write current room
-        writer.name("currentRoom").value(currentRoom.getName());
+        writer.name(CURR_ROOM_KEY).value(currentRoom.getName());
         // write inventory
-        writer.name("inventory").beginObject();
+        writer.name(INV_KEY).beginObject();
         inventory.saveState(writer);
         writer.endObject();
         // write room states
-        writer.name("rooms").beginObject();
+        writer.name(ROOMS_KEY).beginObject();
         for (var room : roomDb.entrySet()) {
             writer.name(room.getKey()).beginObject();
-            room.getValue().save(writer);
+            room.getValue().saveState(writer);
             writer.endObject();
         }
         writer.endObject();
@@ -103,17 +117,17 @@ public class PlayerContext {
             currentRoom = roomDb.get(EntryHall.NAME);
             // load default room states
             for (var room : roomDb.values()) {
-                room.load(null);
+                room.loadState(null);
             }
         } else {
             // get current room
-            currentRoom = roomDb.get(cfg.get("currentRoom").getAsString());
+            currentRoom = roomDb.get(cfg.get(CURR_ROOM_KEY).getAsString());
             // get inventory
-            inventory.loadState(cfg.get("inventory").getAsJsonObject());
+            inventory.loadState(cfg.get(INV_KEY).getAsJsonObject());
             // get room states
-            var rooms = cfg.get("rooms").getAsJsonObject();
+            var rooms = cfg.get(ROOMS_KEY).getAsJsonObject();
             for (var room : roomDb.values()) {
-                room.load(rooms.get(room.getName()).getAsJsonObject());
+                room.loadState(rooms.get(room.getName()).getAsJsonObject());
             }
         }
     }

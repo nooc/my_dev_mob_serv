@@ -10,9 +10,19 @@ import java.util.Set;
 /**
  * Base class for game items.
  */
-public abstract class GameItem implements GameStateIO{
+public abstract class GameItem implements GameStateIO {
 
-    /** Item flags. */
+    public static final String CAN_BURN = "can-burn";
+    public static final String TOUCHED = "touched";
+    public static final String LIT = "lit";
+    public static final String WORN = "worn";
+    public static final String BURN = "burn";
+    public static final String ON = "on";
+    public static final String LOCKED = "locked";
+    protected static final String FLAGS_KEY = "flags";
+    /**
+     * Item flags.
+     */
     private final Set<String> flags;
 
     protected GameItem() {
@@ -21,12 +31,13 @@ public abstract class GameItem implements GameStateIO{
 
     /**
      * Test if this item has all the given flags.
-     * @param flgs
+     *
+     * @param _flags
      * @return True if all flags exist, else false.
      */
-    public final boolean hasFlags(String... flgs) {
-        for (var f : flgs) {
-            if (!flags.contains(f)) {
+    public final boolean hasFlags(String... _flags) {
+        for (var flag : _flags) {
+            if (!flags.contains(flag)) {
                 return false;
             }
         }
@@ -35,6 +46,7 @@ public abstract class GameItem implements GameStateIO{
 
     /**
      * Set a flag.
+     *
      * @param flg Flag
      */
     public final void setFlag(String flg) {
@@ -43,6 +55,7 @@ public abstract class GameItem implements GameStateIO{
 
     /**
      * Clear a flag.
+     *
      * @param flg Flag
      */
     public final void clearFlag(String flg) {
@@ -51,15 +64,17 @@ public abstract class GameItem implements GameStateIO{
 
     /**
      * Handle an event.
+     *
      * @param player Context
-     * @param id Event id
+     * @param id     Event id
      */
-    public void handleEvent(PlayerContext player, String id) { }
+    public void handleEvent(PlayerContext player, String id) {
+    }
 
     public void saveState(JsonWriter writer) throws IOException {
         // write flags
         if (!flags.isEmpty()) {
-            writer.name("flags").beginArray();
+            writer.name(FLAGS_KEY).beginArray();
             for (var f : flags) {
                 writer.value(f);
             }
@@ -70,8 +85,8 @@ public abstract class GameItem implements GameStateIO{
     public void loadState(JsonObject cfg) {
         // read flags
         if (cfg != null) {
-            if (cfg.has("flags")) {
-                var arr = cfg.get("flags").getAsJsonArray();
+            if (cfg.has(FLAGS_KEY)) {
+                var arr = cfg.get(FLAGS_KEY).getAsJsonArray();
                 var i = arr.iterator();
                 while (i.hasNext()) {
                     flags.add(i.next().getAsString());
@@ -82,6 +97,7 @@ public abstract class GameItem implements GameStateIO{
 
     /**
      * Get item name.
+     *
      * @return Name
      */
     public abstract String getName();
@@ -93,25 +109,29 @@ public abstract class GameItem implements GameStateIO{
 
     /**
      * Use item.
+     *
      * @param ctx Context
      */
     public abstract void use(PlayerContext ctx);
 
     /**
      * Use item on target.
-     * @param ctx Context
+     *
+     * @param ctx  Context
      * @param item Target
      */
     public abstract void useOn(PlayerContext ctx, GameItem item);
 
     /**
      * Test if item is hidden in the dark.
+     *
      * @return true or false
      */
     public abstract boolean hideInShadow();
 
     /**
      * Test if item is static (can't be transferred).
+     *
      * @return true or false
      */
     public abstract boolean isStatic();

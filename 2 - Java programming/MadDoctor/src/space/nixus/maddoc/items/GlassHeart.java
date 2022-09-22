@@ -14,7 +14,7 @@ public class GlassHeart extends BodyPart {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("A red [%s] artifact.", NAME);
         } else {
             Game.fmt("There is a red [%s] lying on the floor.", NAME);

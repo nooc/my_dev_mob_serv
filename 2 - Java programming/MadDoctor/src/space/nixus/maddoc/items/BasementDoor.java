@@ -29,16 +29,17 @@ public class BasementDoor extends GameItem {
     /**
      * Using this door will take the player to the basement
      * if unlocked.
+     *
      * @param ctx Context
      */
     @Override
     public void use(PlayerContext ctx) {
-        if (hasFlags("locked")) {
+        if (hasFlags(LOCKED)) {
             Game.fmt("It's locked.");
         } else if (ctx.goTo(Basement.NAME)) {
             Game.fmt("You open the door and take the stairs to the basement.");
         }
-        setFlag("touched");
+        setFlag(TOUCHED);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class BasementDoor extends GameItem {
     public void loadState(JsonObject cfg) {
         super.loadState(cfg);
         if (cfg == null) {
-            setFlag("locked");
+            setFlag(LOCKED);
         }
     }
 }

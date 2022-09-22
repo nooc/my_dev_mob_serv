@@ -13,7 +13,7 @@ public class RightHand extends BodyPart {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("A severed female [%s] with broken nails.", NAME);
         } else {
             Game.fmt("On the floor lies a [%s].", NAME);

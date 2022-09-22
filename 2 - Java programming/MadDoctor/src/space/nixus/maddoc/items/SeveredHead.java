@@ -13,7 +13,7 @@ public class SeveredHead extends BodyPart {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("An eyeless [%s] of an old man.", NAME);
         } else {
             Game.fmt("Floating in the kitchen sink you see an eyeless [%s] of an old man.", NAME);

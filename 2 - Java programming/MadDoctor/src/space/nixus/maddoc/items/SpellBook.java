@@ -16,7 +16,7 @@ public class SpellBook extends GameItem {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("A [%s] for various rituals.", NAME);
         } else {
             Game.fmt("Behind the toilet seat lies a [%s].", NAME);
@@ -31,16 +31,16 @@ public class SpellBook extends GameItem {
     /**
      * Using the spell book on the ritual table will end the game if the
      * ritual table is complete and the player is not wearing the gas mask.
-     * @param ctx Context
+     *
+     * @param ctx  Context
      * @param item Target
      */
     @Override
     public void useOn(PlayerContext ctx, GameItem item) {
         var mask = ctx.getInventory().getItem(GasMask.NAME);
-        if(mask!=null && mask.hasFlags("worn")) {
+        if (mask != null && mask.hasFlags(WORN)) {
             Game.fmt("You can not read the text when wearing the gas mask.");
-        }
-        else if (item.getName().equals(RitualTable.NAME)) {
+        } else if (item.getName().equals(RitualTable.NAME)) {
             if (!item.hasFlags(RightHand.NAME, LeftFoot.NAME, SeveredHead.NAME, GlassHeart.NAME)) {
                 Game.fmt("Something is missing from the ritual.");
             } else {
@@ -56,19 +56,20 @@ public class SpellBook extends GameItem {
     public void loadState(JsonObject cfg) {
         super.loadState(cfg);
         if (cfg == null) {
-            setFlag("can_burn"); // add default flag
+            setFlag(CAN_BURN); // add default flag
         }
     }
 
     /**
      * Burn this spell book. This will effectively prevent the player from
      * completing the game.
+     *
      * @param player Context
-     * @param id Event id
+     * @param id     Event id
      */
     @Override
     public void handleEvent(PlayerContext player, String id) {
-        if (id.equals("burn")) {
+        if (id.equals(BURN)) {
             player.getInventory().discardItem(NAME);
             player.getCurrentRoom().getInventory().discardItem(NAME);
             Game.fmt("The spell book burns to ashes.");

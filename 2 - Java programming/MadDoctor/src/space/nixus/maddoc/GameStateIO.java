@@ -9,6 +9,7 @@ public interface GameStateIO {
 
     /**
      * Write state to writer.
+     *
      * @param writer Output
      * @throws IOException Writer exception.
      */
@@ -16,6 +17,7 @@ public interface GameStateIO {
 
     /**
      * Read state from object.
+     *
      * @param cfg State config
      * @throws Exception Config exception.
      */

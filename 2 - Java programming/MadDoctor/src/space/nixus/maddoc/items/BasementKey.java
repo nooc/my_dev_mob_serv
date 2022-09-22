@@ -16,7 +16,7 @@ public class BasementKey extends GameItem {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("[%s] for the basement door.", NAME);
         } else {
             Game.fmt("On the kitchen table lies the [%s].", NAME);
@@ -31,13 +31,14 @@ public class BasementKey extends GameItem {
     /**
      * This key can be used on DoorToBasement.
      * Once used, unlocks door and discards key.
+     *
      * @param player Context
-     * @param item Target
+     * @param item   Target
      */
     @Override
     public void useOn(PlayerContext player, GameItem item) {
         if (item.getName().equals(BasementDoor.NAME)) {
-            item.clearFlag("locked");
+            item.clearFlag(LOCKED);
             player.getInventory().discardItem(NAME);
             Game.fmt("You unlocked the door.");
         } else {

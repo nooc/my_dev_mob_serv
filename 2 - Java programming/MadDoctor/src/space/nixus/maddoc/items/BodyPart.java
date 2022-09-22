@@ -17,7 +17,8 @@ public abstract class BodyPart extends GameItem {
     /**
      * Use body part on ritual table.
      * Sets flag on RitualTable and discards this item.
-     * @param ctx PlayerContext
+     *
+     * @param ctx  PlayerContext
      * @param item RitualTable
      */
     @Override

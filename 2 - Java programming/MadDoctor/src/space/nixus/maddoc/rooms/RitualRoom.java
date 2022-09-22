@@ -12,9 +12,13 @@ import java.util.List;
 
 public class RitualRoom extends Room {
 
-    /** Name/id */
+    /**
+     * Name/id
+     */
     public static final String NAME = "ritual-room";
-    /** List of room connections. */
+    /**
+     * List of room connections.
+     */
     private static final List<String> LINKS = List.of(Basement.NAME);
 
     @Override
@@ -48,9 +52,11 @@ public class RitualRoom extends Room {
         return true;
     }
 
-    public void load(JsonObject cfg) throws Exception {
+    @Override
+    public void loadState(JsonObject cfg) throws Exception {
+        super.loadState(cfg);
         if (cfg == null) {
             inventory.init(new RitualTable(), new WallTorch(), new RightHand());
-        } else super.load(cfg);
+        }
     }
 }

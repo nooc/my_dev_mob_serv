@@ -13,7 +13,7 @@ public class LeftFoot extends BodyPart {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("A severed and bruised [%s] of a female.", NAME);
         } else {
             Game.fmt("In one of the corners lies a severed [%s].", NAME);

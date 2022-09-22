@@ -18,28 +18,34 @@ import java.util.Scanner;
 public class Game {
 
     public static final String BEGINNING = """
-Something has gone awry. You know you have been living in this
-house for a while, experimenting with occult rituals, but alas,
-you seem to have lost your memory. All you can remember is that
-you should complete the experiment...""";
+            Something has gone awry. You know you have been living in this
+            house for a while, experimenting with occult rituals, but alas,
+            you seem to have lost your memory. All you can remember is that
+            you should complete the experiment...""";
     public static final String ENDING = """
-You begin chanting the spell as described in the spell book.
-A cold breeze sweeps across the room and the light is
-suppressed by materialized darkness emanating from the body.
-You head a horrid, unnatural roar and seconds there after the
-clattering of something moving in the darkness. Before you
-can react, the thing leaps up next to you and whispers in
-your ear, "Wake up..."
+            You begin chanting the spell as described in the spell book.
+            A cold breeze sweeps across the room and the light is
+            suppressed by materialized darkness emanating from the body.
+            You head a horrid, unnatural roar and seconds there after the
+            clattering of something moving in the darkness. Before you
+            can react, the thing leaps up next to you and whispers in
+            your ear, "Wake up..."
 
-You wake up in your bed, drenched in sweat.
+            You wake up in your bed, drenched in sweat.
 
-THE END""";
-    /** Save file location. */
+            THE END""";
+    /**
+     * Save file location.
+     */
     private static final Path SAVE_FILE = Path.of("./maddoc.save");
-    /** Google json. */
+    /**
+     * Google json.
+     */
     private static Gson gson = null;
 
-    /** Program entry */
+    /**
+     * Program entry
+     */
     public static void main(String[] args) {
 
         // create gson
@@ -56,8 +62,8 @@ THE END""";
         // try loading game
         try {
             var cfg = getConfig();
-            player.load(cfg);
-            if(cfg==null) {
+            player.load(null);
+            if (cfg == null) {
                 fmt(BEGINNING);
             }
         } catch (Exception ex) {
@@ -76,18 +82,18 @@ THE END""";
             var cmd = cmds[0];
             if (cmd.equals("help")) {
                 fmt("""
-GAME INTERFACE:
-quit - Quit the game.
-save - Save the game.
-look - Look around in the current room.
-lookat <target> - Look at the target.
-inv - Show inventory.
-get <item> - Pick up item from the current room.
-use <item> - Use item in the current room or in your inventory.
-use <item> on <target> - Use source on target.
-put <item> on <target> - Put source on target.
-drop <item> - Drop item in current room.
-goto <target> - Move to target.""");
+                        GAME INTERFACE:
+                        quit - Quit the game.
+                        save - Save the game.
+                        look - Look around in the current room.
+                        lookat <target> - Look at the target.
+                        inv - Show inventory.
+                        get <item> - Pick up item from the current room.
+                        use <item> - Use item in the current room or in your inventory.
+                        use <item> on <target> - Use source on target.
+                        put <item> on <target> - Put source on target.
+                        drop <item> - Drop item in current room.
+                        goto <target> - Move to target.""");
 
             } else if (cmd.equals("get") && cmds.length == 2) {
                 Manipulator.getItem(player, cmds[1]);
@@ -127,6 +133,7 @@ goto <target> - Move to target.""");
 
     /**
      * Get json writer.
+     *
      * @return JsonWriter
      * @throws IOException
      */
@@ -136,6 +143,7 @@ goto <target> - Move to target.""");
 
     /**
      * Get JsonObject from SAVE_FILE.
+     *
      * @return JsonObject
      */
     private static JsonObject getConfig() {
@@ -149,6 +157,7 @@ goto <target> - Move to target.""");
     /**
      * String output formatter with newline.
      * All game output is going through fmt or fmt0.
+     *
      * @param format Format string
      * @param params Format parameters
      */
@@ -161,6 +170,7 @@ goto <target> - Move to target.""");
     /**
      * String output formatter without newline.
      * All game output is going through fmt or fmt0.
+     *
      * @param format Format string
      * @param params Format parameters
      */

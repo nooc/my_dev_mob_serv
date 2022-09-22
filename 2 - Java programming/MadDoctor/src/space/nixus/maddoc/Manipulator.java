@@ -15,12 +15,15 @@ public final class Manipulator {
             "Nope.", "I don't think so.", "Maybe later.", "Hmm..."
     };
 
-    /** Randomizer. */
+    /**
+     * Randomizer.
+     */
     private static final Random RND = new Random();
 
     /**
      * Picks up item command.
-     * @param ctx Context
+     *
+     * @param ctx  Context
      * @param name Item id
      */
     public static void getItem(PlayerContext ctx, String name) {
@@ -30,7 +33,8 @@ public final class Manipulator {
 
     /**
      * Try to get item from available inventories.
-     * @param ctx PlayerContext
+     *
+     * @param ctx  PlayerContext
      * @param name Item id
      * @return GameItem or null
      */
@@ -44,7 +48,8 @@ public final class Manipulator {
 
     /**
      * Use item command.
-     * @param ctx PlayerContext
+     *
+     * @param ctx  PlayerContext
      * @param name Item id
      */
     public static void useItem(PlayerContext ctx, String name) {
@@ -58,6 +63,7 @@ public final class Manipulator {
 
     /**
      * Use item on another item command.
+     *
      * @param ctx
      * @param name1 Item id 1
      * @param name2 Item id 2
@@ -77,7 +83,8 @@ public final class Manipulator {
      * If target is "room", look at room.
      * If target is "inventory, look in player inventory.
      * Else look at target item.
-     * @param ctx PlayerContext
+     *
+     * @param ctx    PlayerContext
      * @param target Look at target
      */
     public static void lookAt(PlayerContext ctx, String target) {
@@ -103,7 +110,8 @@ public final class Manipulator {
 
     /**
      * Move to room command.
-     * @param ctx PlayerContext
+     *
+     * @param ctx  PlayerContext
      * @param room Room id
      */
     public static void moveTo(PlayerContext ctx, String room) {

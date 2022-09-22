@@ -11,9 +11,13 @@ import java.util.List;
 
 public class RestRoom extends Room {
 
-    /** Name/id */
+    /**
+     * Name/id
+     */
     public static final String NAME = "rest-room";
-    /** List of room connections. */
+    /**
+     * List of room connections.
+     */
     public static final List<String> LINKS = List.of(EntryHall.NAME);
 
     @Override
@@ -49,9 +53,11 @@ public class RestRoom extends Room {
         return true;
     }
 
-    public void load(JsonObject cfg) throws Exception {
+    @Override
+    public void loadState(JsonObject cfg) throws Exception {
+        super.loadState(cfg);
         if (cfg == null) {
             inventory.init(new LightSwitch(), new SpellBook());
-        } else super.load(cfg);
+        }
     }
 }

@@ -22,13 +22,13 @@ public class LightSwitch extends GameItem {
     }
 
     public void use(PlayerContext p) {
-        if (hasFlags("on")) {
-            clearFlag("on");
+        if (hasFlags(ON)) {
+            clearFlag(ON);
         } else {
-            setFlag("on");
+            setFlag(ON);
         }
         Game.fmt("You flip the light switch.");
-        setFlag("touched");
+        setFlag(TOUCHED);
     }
 
     public void useOn(PlayerContext player, GameItem item) {

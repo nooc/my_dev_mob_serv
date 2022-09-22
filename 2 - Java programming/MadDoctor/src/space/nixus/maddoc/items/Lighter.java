@@ -15,7 +15,7 @@ public class Lighter extends GameItem {
 
     @Override
     public void describe() {
-        if (hasFlags("touched")) {
+        if (hasFlags(TOUCHED)) {
             Game.fmt("An ordinary [%s].", NAME);
         } else {
             Game.fmt("On a stool lies what looks to be a [%s].", NAME);
@@ -29,8 +29,8 @@ public class Lighter extends GameItem {
 
     @Override
     public void useOn(PlayerContext player, GameItem item) {
-        if (item.hasFlags("can-burn")) {
-            item.handleEvent(player, "burn");
+        if (item.hasFlags(CAN_BURN)) {
+            item.handleEvent(player, BURN);
         }
     }
 

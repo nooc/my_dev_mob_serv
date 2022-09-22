@@ -17,7 +17,7 @@ public class WallTorch extends GameItem {
 
     @Override
     public void describe() {
-        if (hasFlags("lit")) {
+        if (hasFlags(LIT)) {
             Game.fmt("A lit [%s] giving off yellowish light.", NAME);
         } else {
             Game.fmt("A barely visible and unlit [%s].", NAME);
@@ -26,17 +26,18 @@ public class WallTorch extends GameItem {
 
     /**
      * Handle burn event by lighting this torch.
-     * @param player Context
-     * @param id Event id
+     *
+     * @param ctx Context
+     * @param id  Event id
      */
     @Override
-    public void handleEvent(PlayerContext player, String id) {
-        if (id.equals("burn")) {
-            if (hasFlags("lit")) {
+    public void handleEvent(PlayerContext ctx, String id) {
+        if (id.equals(BURN)) {
+            if (hasFlags(LIT)) {
                 Game.fmt("The torch is already lit.");
             } else {
                 Game.fmt("You light the torch.");
-                setFlag("lit");
+                setFlag(LIT);
             }
         }
     }
@@ -55,7 +56,7 @@ public class WallTorch extends GameItem {
     public void loadState(JsonObject cfg) {
         super.loadState(cfg);
         if (cfg == null) {
-            setFlag("can_burn"); // add default flag
+            setFlag(CAN_BURN); // add default flag
         }
     }
 
