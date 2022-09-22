@@ -1,16 +1,15 @@
 package space.nixus.maddoc.items;
 
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
 import space.nixus.maddoc.*;
 
 import java.io.Serializable;
 
-public class LightSwitch extends GameItem implements Serializable {
+public class LightSwitch extends GameItem {
 
-    public LightSwitch(boolean state) {
+    public LightSwitch() {
         super();
-        if(state) {
-            setFlag("on");
-        }
     }
     public static final String NAME = "light-switch";
 
@@ -22,7 +21,7 @@ public class LightSwitch extends GameItem implements Serializable {
         Game.fmt("There is a light switch on the wall.");
     }
 
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         if(hasFlags("on")) {
             clearFlag("on");
         }
@@ -30,9 +29,10 @@ public class LightSwitch extends GameItem implements Serializable {
             setFlag("on");
         }
         Game.fmt("You flip the light switch.");
+        touch();
     }
 
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         Manipulator.cantUnderstand();
     }
 

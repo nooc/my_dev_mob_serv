@@ -3,12 +3,12 @@ package space.nixus.maddoc.items;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.rooms.RitualRoom;
 
 import java.io.Serializable;
 
-public class NarrowWoodenDoor extends GameItem implements Serializable {
+public class NarrowWoodenDoor extends GameItem {
 
     public static final String NAME = "wooden-door";
 
@@ -23,14 +23,15 @@ public class NarrowWoodenDoor extends GameItem implements Serializable {
     }
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         if(p.goTo(RitualRoom.NAME)) {
             Game.fmt("You go through the narrow door.");
         }
+        touch();
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         Manipulator.cantUnderstand();
     }
 

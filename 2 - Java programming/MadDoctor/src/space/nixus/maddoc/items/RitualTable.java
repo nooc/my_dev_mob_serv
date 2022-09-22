@@ -3,11 +3,11 @@ package space.nixus.maddoc.items;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public class RitualTable extends GameItem implements Serializable {
+public class RitualTable extends GameItem {
 
     public static final String NAME = "ritual-table";
 
@@ -32,11 +32,11 @@ public class RitualTable extends GameItem implements Serializable {
             }
     }
 
-    public void use(Player player) {
+    public void use(PlayerContext player) {
         Manipulator.cantUnderstand();
     }
 
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         Manipulator.cantUnderstand();
     }
 

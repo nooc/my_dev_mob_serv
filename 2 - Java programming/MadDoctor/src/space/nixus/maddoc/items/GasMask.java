@@ -3,11 +3,11 @@ package space.nixus.maddoc.items;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public class GasMask extends GameItem implements Serializable {
+public class GasMask extends GameItem {
 
     public static final String NAME = "gas-mask";
 
@@ -27,7 +27,7 @@ public class GasMask extends GameItem implements Serializable {
     }
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         if(hasFlags("worn")) {
             Game.fmt("You are already wearing the mask.");
         }
@@ -38,7 +38,7 @@ public class GasMask extends GameItem implements Serializable {
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         Manipulator.cantUnderstand();
     }
 

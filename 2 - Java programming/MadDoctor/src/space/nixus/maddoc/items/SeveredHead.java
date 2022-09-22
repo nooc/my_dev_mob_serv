@@ -4,14 +4,9 @@ import space.nixus.maddoc.Game;
 
 import java.io.Serializable;
 
-public class SeveredHead extends BodyPart implements Serializable {
+public class SeveredHead extends BodyPart {
 
     public static final String NAME = "severed-head";
-
-    public SeveredHead() {
-        super();
-        setFlag("start_pos");
-    }
 
     @Override
     public String getName() {

@@ -1,12 +1,14 @@
 package space.nixus.maddoc.items;
 
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public class Lighter extends GameItem implements Serializable {
+public class Lighter extends GameItem {
 
     public static final String NAME = "lighter";
 
@@ -26,14 +28,14 @@ public class Lighter extends GameItem implements Serializable {
     }
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         Game.fmt("You try the lighter. Yep, it's working.");
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
-        if (item.hasFlags("can_burn")) {
-            item.handleEvent("burn");
+    public void useOn(PlayerContext player, GameItem item) {
+        if (item.hasFlags("can-burn")) {
+            item.handleEvent(player,"burn");
         }
     }
 

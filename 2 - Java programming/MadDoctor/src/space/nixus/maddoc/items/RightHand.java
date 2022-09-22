@@ -1,12 +1,10 @@
 package space.nixus.maddoc.items;
 
 import space.nixus.maddoc.Game;
-import space.nixus.maddoc.GameItem;
-import space.nixus.maddoc.Player;
 
 import java.io.Serializable;
 
-public class RightHand extends BodyPart implements Serializable {
+public class RightHand extends BodyPart {
 
     public static final String NAME = "right-hand";
 

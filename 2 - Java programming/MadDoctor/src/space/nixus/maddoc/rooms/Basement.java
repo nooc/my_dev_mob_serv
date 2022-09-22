@@ -1,7 +1,8 @@
 package space.nixus.maddoc.rooms;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.GasMask;
 import space.nixus.maddoc.items.LeftFoot;
@@ -12,15 +13,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class Basement extends Room implements Serializable {
+public class Basement extends Room {
 
     public static final String NAME = "basement";
     private static final List<String> LINKS = Arrays.asList( EntryHall.NAME);
-
-    public Basement() {
-        super();
-        inventory.init(new LightSwitch(false), new LeftFoot(), new NarrowWoodenDoor());
-    }
 
     @Override
     public boolean isLit() {
@@ -54,12 +50,19 @@ public class Basement extends Room implements Serializable {
     }
 
     @Override
-    public boolean movingTo(Player p) {
+    public boolean movingTo(PlayerContext p) {
         var itm = p.getInventory().getItem(GasMask.NAME);
         if(itm!=null && itm.hasFlags("worn") ) {
             return true;
         }
         Game.fmt("A pungent smell of poison and death keeps you from entering.");
         return false;
+    }
+
+    public void load(JsonObject cfg) throws Exception {
+        if(cfg==null) {
+            inventory.init(new LightSwitch(), new LeftFoot(), new NarrowWoodenDoor());
+        }
+        else super.load(cfg);
     }
 }

@@ -4,7 +4,7 @@ import space.nixus.maddoc.Game;
 
 import java.io.Serializable;
 
-public class LeftFoot extends BodyPart implements Serializable {
+public class LeftFoot extends BodyPart {
 
     public static final String NAME = "left-foot";
 

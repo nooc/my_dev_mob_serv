@@ -1,7 +1,8 @@
 package space.nixus.maddoc.rooms;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.BasementKey;
 import space.nixus.maddoc.items.LightSwitch;
@@ -11,15 +12,11 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class Kitchen extends Room implements Serializable {
+public class Kitchen extends Room {
 
     public static final String NAME = "kitchen";
     private static final List<String> LINKS = Arrays.asList(LivingRoom.NAME);
 
-    public Kitchen() {
-        super();
-        inventory.init(new LightSwitch(false), new SeveredHead(), new BasementKey());
-    }
     @Override
     public boolean isLit() {
         return inventory.getItem(LightSwitch.NAME).hasFlags("on");
@@ -51,7 +48,14 @@ public class Kitchen extends Room implements Serializable {
     }
 
     @Override
-    public boolean movingTo(Player p) {
+    public boolean movingTo(PlayerContext p) {
         return true;
+    }
+
+    public void load(JsonObject cfg) throws Exception {
+        if(cfg==null) {
+            inventory.init(new LightSwitch(), new SeveredHead(), new BasementKey());
+        }
+        else super.load(cfg);
     }
 }

@@ -1,7 +1,8 @@
 package space.nixus.maddoc.rooms;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.GasMask;
 import space.nixus.maddoc.items.GlassHeart;
@@ -10,15 +11,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class LivingRoom extends Room implements Serializable {
+public class LivingRoom extends Room {
 
     public static final String NAME = "living-room";
     private static final List<String> LINKS = Arrays.asList(EntryHall.NAME, Kitchen.NAME);
-
-    public LivingRoom() {
-        super();
-        inventory.init(new GlassHeart(), new GasMask());
-    }
 
     @Override
     public boolean isLit() {
@@ -45,7 +41,14 @@ public class LivingRoom extends Room implements Serializable {
     }
 
     @Override
-    public boolean movingTo(Player p) {
+    public boolean movingTo(PlayerContext p) {
         return true;
+    }
+
+    public void load(JsonObject cfg) throws Exception {
+        if(cfg==null) {
+            inventory.init(new GlassHeart(), new GasMask());
+        }
+        else super.load(cfg);
     }
 }

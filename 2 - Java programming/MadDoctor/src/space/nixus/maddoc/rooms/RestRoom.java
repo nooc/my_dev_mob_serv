@@ -1,7 +1,8 @@
 package space.nixus.maddoc.rooms;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.LightSwitch;
 import space.nixus.maddoc.items.SpellBook;
@@ -10,15 +11,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class RestRoom extends Room implements Serializable {
+public class RestRoom extends Room {
 
     public static final String NAME = "rest-room";
     public static final List<String> LINKS = Arrays.asList(EntryHall.NAME);
-
-    public RestRoom() {
-        super();
-        inventory.init(new LightSwitch(false), new SpellBook());
-    }
 
     @Override
     public boolean isLit() {
@@ -50,7 +46,14 @@ public class RestRoom extends Room implements Serializable {
     }
 
     @Override
-    public boolean movingTo(Player p) {
+    public boolean movingTo(PlayerContext p) {
         return true;
+    }
+
+    public void load(JsonObject cfg) throws Exception {
+        if(cfg==null) {
+            inventory.init(new LightSwitch(), new SpellBook());
+        }
+        else super.load(cfg);
     }
 }

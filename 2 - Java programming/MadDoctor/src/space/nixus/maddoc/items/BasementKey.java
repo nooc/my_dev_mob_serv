@@ -3,11 +3,11 @@ package space.nixus.maddoc.items;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public class BasementKey extends GameItem implements Serializable {
+public class BasementKey extends GameItem {
 
     public static final String NAME = "basement-key";
 
@@ -27,12 +27,12 @@ public class BasementKey extends GameItem implements Serializable {
     }
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         Manipulator.cantUnderstand();
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         if(item.getName().equals(DoorToBasement.NAME)) {
             item.clearFlag("locked");
             player.getInventory().discardItem(NAME);

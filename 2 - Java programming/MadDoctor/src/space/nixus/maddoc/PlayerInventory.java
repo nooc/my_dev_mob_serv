@@ -1,13 +1,11 @@
 package space.nixus.maddoc;
 
-import java.io.Serializable;
-
-public class PlayerInventory extends Inventory implements Serializable {
+public class PlayerInventory extends Inventory {
 
     public static final String TYPE = "player";
-    private Player player;
+    private PlayerContext player;
 
-    public PlayerInventory(Player player) {
+    public PlayerInventory(PlayerContext player) {
         this.player = player;
     }
 

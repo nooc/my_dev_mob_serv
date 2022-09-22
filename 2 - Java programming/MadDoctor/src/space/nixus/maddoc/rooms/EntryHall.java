@@ -1,7 +1,8 @@
 package space.nixus.maddoc.rooms;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.Room;
 import space.nixus.maddoc.items.DoorToBasement;
 import space.nixus.maddoc.items.Lighter;
@@ -10,15 +11,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public final class EntryHall extends Room implements Serializable {
+public final class EntryHall extends Room {
 
     public static final String NAME = "entry-hall";
     private static final List<String> LINKS = Arrays.asList( LivingRoom.NAME, RestRoom.NAME );
-
-    public EntryHall() {
-        super();
-        inventory.init(new Lighter(), new DoorToBasement());
-    }
 
     @Override
     public boolean isLit() {
@@ -45,7 +41,14 @@ public final class EntryHall extends Room implements Serializable {
     }
 
     @Override
-    public boolean movingTo(Player p) {
+    public boolean movingTo(PlayerContext p) {
         return true;
+    }
+
+    public void load(JsonObject cfg) throws Exception{
+        if(cfg==null) {
+            inventory.init(new Lighter(), new DoorToBasement());
+        }
+        else super.load(cfg);
     }
 }

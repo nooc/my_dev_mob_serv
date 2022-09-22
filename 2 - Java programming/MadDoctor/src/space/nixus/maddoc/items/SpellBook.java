@@ -1,12 +1,13 @@
 package space.nixus.maddoc.items;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public class SpellBook extends GameItem implements Serializable {
+public class SpellBook extends GameItem {
 
     public static final String NAME = "spell-book";
 
@@ -26,12 +27,12 @@ public class SpellBook extends GameItem implements Serializable {
     }
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         Game.fmt("You wouldn't know where to start.");
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         if(item.getName().equals(RitualTable.NAME)) {
             if(! item.hasFlags(RightHand.NAME, LeftFoot.NAME, SeveredHead.NAME, GlassHeart.NAME ))
             {
@@ -43,7 +44,7 @@ public class SpellBook extends GameItem implements Serializable {
                         "suppressed by materialized darkness emanating from the body.\n" +
                         "You head a horrid, unnatural roar and seconds there after the clattering\n" +
                         "of something moving in the darkness. Before you can react, the thing\n" +
-                        "leaps up nex to you and whispers in your ear: Wake up...\n" +
+                        "leaps up next to you and whispers in your ear, \"Wake up...\"\n\n" +
                         "You wake up in your bed, drenched in sweat.\n\n" +
                         "THE END");
                 Game.exit();
@@ -51,6 +52,23 @@ public class SpellBook extends GameItem implements Serializable {
         }
         else {
             Game.fmt("Nothing happens.");
+        }
+    }
+
+    @Override
+    public void load(JsonObject cfg) {
+        super.load(cfg);
+        if(cfg == null) {
+            setFlag("can_burn");
+        }
+    }
+
+    @Override
+    public void handleEvent(PlayerContext player, String id) {
+        if(id.equals("burn")) {
+            player.getInventory().discardItem(NAME);
+            player.getCurrentRoom().getInventory().discardItem(NAME);
+            Game.fmt("The spell book burns to ashes.");
         }
     }
 

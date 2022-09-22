@@ -1,26 +1,29 @@
 package space.nixus.maddoc.items;
 
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
+import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
-import space.nixus.maddoc.Inventory;
 import space.nixus.maddoc.Manipulator;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public abstract class BodyPart extends GameItem implements Serializable {
+public abstract class BodyPart extends GameItem {
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         Manipulator.cantUnderstand();
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         // set flag on table and discard this item
         if(item.getName().equals(RitualTable.NAME)) {
-            var name = getName();
-            item.setFlag(name);
-            player.getInventory().discardItem(name);
+            item.setFlag(getName());
+            player.getInventory().discardItem(getName());
+            Game.fmt("You place the %s on the %s.",
+                    getName(), RitualTable.NAME);
         }
     }
 

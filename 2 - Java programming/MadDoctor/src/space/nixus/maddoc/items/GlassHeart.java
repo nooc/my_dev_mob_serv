@@ -5,7 +5,7 @@ import space.nixus.maddoc.Game;
 import java.io.Serializable;
 
 
-public class GlassHeart extends BodyPart implements Serializable {
+public class GlassHeart extends BodyPart {
 
     public static final String NAME = "glass-heart";
 

@@ -1,20 +1,16 @@
 package space.nixus.maddoc.items;
 
+import com.google.gson.JsonObject;
 import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
-import space.nixus.maddoc.Player;
+import space.nixus.maddoc.PlayerContext;
 
 import java.io.Serializable;
 
-public class WallTorch extends GameItem implements Serializable {
+public class WallTorch extends GameItem {
 
     public static final String NAME = "wall-torch";
-
-    public WallTorch() {
-        super();
-        setFlag("can_burn");
-    }
 
     @Override
     public String getName() {
@@ -32,7 +28,7 @@ public class WallTorch extends GameItem implements Serializable {
     }
 
     @Override
-    public void handleEvent(String id) {
+    public void handleEvent(PlayerContext player, String id) {
         if(id.equals("burn"))
         {
             if(hasFlags("lit")) {
@@ -46,13 +42,21 @@ public class WallTorch extends GameItem implements Serializable {
     }
 
     @Override
-    public void use(Player p) {
+    public void use(PlayerContext p) {
         Manipulator.cantUnderstand();
     }
 
     @Override
-    public void useOn(Player player, GameItem item) {
+    public void useOn(PlayerContext player, GameItem item) {
         Manipulator.cantUnderstand();
+    }
+
+    @Override
+    public void load(JsonObject cfg) {
+        super.load(cfg);
+        if(cfg == null) {
+            setFlag("can_burn");
+        }
     }
 
     @Override
