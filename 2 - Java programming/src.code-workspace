@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "2_1_Uppg_3_Personnummer"
+		},
+		{
+			"path": "ExpressionCalc"
 		}
 	],
 	"settings": {}
