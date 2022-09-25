@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 /**
  * Player context contains the whole game tree.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public class PlayerContext {
     protected static final String CURR_ROOM_KEY = "current";

@@ -14,6 +14,8 @@ import java.util.Scanner;
 
 /**
  * MadDoctor game class.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public class Game {
 

@@ -7,6 +7,8 @@ import space.nixus.maddoc.PlayerContext;
 
 /**
  * Base class for body parts.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public abstract class BodyPart extends GameItem {
     @Override

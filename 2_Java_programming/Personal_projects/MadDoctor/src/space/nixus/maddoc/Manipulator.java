@@ -4,6 +4,8 @@ import java.util.Random;
 
 /**
  * Helper class used by Game.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public final class Manipulator {
 

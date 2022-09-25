@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 /**
  * Base class for inventories.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public abstract class Inventory implements GameStateIO {
     protected static final String CONTENT_KEY = "content";

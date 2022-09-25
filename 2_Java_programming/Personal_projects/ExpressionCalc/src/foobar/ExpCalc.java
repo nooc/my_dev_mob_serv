@@ -1,7 +1,6 @@
 package foobar;
 
 import java.util.HashMap;
-import java.util.HexFormat;
 import java.util.Scanner;
 
 /**
@@ -13,29 +12,17 @@ import java.util.Scanner;
  * 
  * Input expression: 8 * 2 + 9 - 10
  * Result: 15.0
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public class ExpCalc {
-    
-    /**
-     * Operator interface.
-     */
-    static abstract class OpBase {
-        String pattern; // regex
 
-        OpBase(String op) {
-            pattern = "\\x"+HexFormat.of().toHexDigits(op.charAt(0)).substring(2);
-        }
-        /**
-         * Apply operator as L-VALUE OP R-VALUE.
-         * @param left Left as double.
-         * @param right Right as double.
-         * @return Resulting value.
-         */
-        abstract double operate(double left, double right);
-    }
+      /** Operators in reverse priority order. */
+      private static final String[] OP_LIST = {"+","-","/","*"};
 
+ 
     /** Multiplication */
-    static class MulOp extends OpBase {
+    private class MulOp extends OpBase {
         MulOp(String op) { super(op); }
 
         @Override
@@ -46,7 +33,7 @@ public class ExpCalc {
     }
 
     /** Division */
-    static class DivOp extends OpBase {
+    private class DivOp extends OpBase {
         DivOp(String op) { super(op); }
 
         @Override
@@ -57,7 +44,7 @@ public class ExpCalc {
     }
 
     /** Subtraction */
-    static class SubOp extends OpBase {
+    private class SubOp extends OpBase {
         SubOp(String op) { super(op); }
 
         @Override
@@ -68,7 +55,7 @@ public class ExpCalc {
     }
 
     /** Addition */
-    static class AddOp extends OpBase {
+    private class AddOp extends OpBase {
         AddOp(String op) { super(op); }
 
         @Override
@@ -78,54 +65,28 @@ public class ExpCalc {
         }
     }
 
-    /** Operators in reverse priority order. */
-    private static final String[] OP_LIST = {"+","-","/","*"};
     /** Map of operator. */
-    private static final HashMap<String,OpBase> OP_MAP;
+    private final HashMap<String,OpBase> opMap;
     
-    /* Initialize operator map. */
-    static {
-        OP_MAP = new HashMap<>();
-        OP_MAP.put("*", new MulOp("*"));
-        OP_MAP.put("/", new DivOp("/"));
-        OP_MAP.put("-", new SubOp("-"));
-        OP_MAP.put("+", new AddOp("+"));
+    private ExpCalc() {
+        /* Initialize operator map. */
+        opMap = new HashMap<>();
+        opMap.put("*", new MulOp("*"));
+        opMap.put("/", new DivOp("/"));
+        opMap.put("-", new SubOp("-"));
+        opMap.put("+", new AddOp("+"));
+
     }
     
-    /**
-     * Program main.
-     * @param args
-     */
-    public static void main(String[] args) {
-        
-        // With scanner...
-        try(Scanner in = new Scanner(System.in)) {
-
-            // Calculator loop.
-            while(true) {
-                // Get expression.
-                System.out.print("Input expression: ");
-                var exp = in.nextLine();
-
-                // Evaluate and print.
-                System.out.println("Result: " + evaluate(exp));
-            }
-        }
-        catch(Exception ex) {
-            // On fail...
-            System.out.println(ex.getMessage());
-        }
-    }
-
     /**
      * Get first lowest priority operator. 
      * @param exp Explession
      * @return Op or null
      */
-    private static OpBase getOp(String exp) {
+    private OpBase getOp(String exp) {
         for(String op : OP_LIST) {
             if(exp.contains(op)) {
-                return OP_MAP.get(op);
+                return opMap.get(op);
             }
         }
         return null;
@@ -136,7 +97,7 @@ public class ExpCalc {
      * @param exp String
      * @return result as double
      */
-    private static double evaluate(String exp)
+    private double evaluate(String exp)
     {
         var _exp = exp.strip(); // remove spaces
         var op = getOp(_exp); 
@@ -154,6 +115,33 @@ public class ExpCalc {
                 res = op.operate(res, evaluate(parts[idx]));
             }
             return res;
+        }
+    }
+
+    /**
+     * Application main.
+     * @param args
+     */
+    public static void main(String[] args) {
+        
+        var calc = new ExpCalc();
+
+        // With scanner...
+        try(Scanner in = new Scanner(System.in)) {
+
+            // do calculator loop.
+            while(true) {
+                // Get expression.
+                System.out.print("Input expression: ");
+                var exp = in.nextLine();
+
+                // Evaluate and print.
+                System.out.println("Result: " + calc.evaluate(exp));
+            }
+        }
+        catch(Exception ex) {
+            // On fail...
+            System.out.println(ex.getMessage());
         }
     }
 }

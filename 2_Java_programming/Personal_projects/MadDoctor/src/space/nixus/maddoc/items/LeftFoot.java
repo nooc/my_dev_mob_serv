@@ -2,6 +2,9 @@ package space.nixus.maddoc.items;
 
 import space.nixus.maddoc.Game;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class LeftFoot extends BodyPart {
 
     public static final String NAME = "left-foot";

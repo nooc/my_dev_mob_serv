@@ -10,6 +10,9 @@ import space.nixus.maddoc.items.WallTorch;
 
 import java.util.List;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class RitualRoom extends Room {
 
     /**

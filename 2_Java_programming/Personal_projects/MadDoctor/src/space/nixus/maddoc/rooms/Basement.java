@@ -11,6 +11,9 @@ import space.nixus.maddoc.items.WoodenDoor;
 
 import java.util.List;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class Basement extends Room {
 
     /**

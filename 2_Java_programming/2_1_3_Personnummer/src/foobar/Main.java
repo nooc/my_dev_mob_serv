@@ -3,7 +3,9 @@ package foobar;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class Main {
 
     /** Mainprogram.

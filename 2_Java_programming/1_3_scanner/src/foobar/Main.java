@@ -2,7 +2,9 @@ package foobar;
 
 import java.util.Scanner;
 
-/** Main */
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+*/
 public class Main {
     public static void main(String[] args) {
 

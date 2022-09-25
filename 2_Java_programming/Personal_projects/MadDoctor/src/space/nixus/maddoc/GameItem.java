@@ -9,6 +9,8 @@ import java.util.Set;
 
 /**
  * Base class for game items.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public abstract class GameItem implements GameStateIO {
 

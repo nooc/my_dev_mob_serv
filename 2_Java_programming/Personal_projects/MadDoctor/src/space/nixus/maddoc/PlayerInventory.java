@@ -1,5 +1,8 @@
 package space.nixus.maddoc;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class PlayerInventory extends Inventory {
     /**
      * PlayerContext of inventory.

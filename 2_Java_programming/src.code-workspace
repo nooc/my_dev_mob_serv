@@ -7,7 +7,10 @@
 			"path": "2_1_3_Personnummer"
 		},
 		{
-			"path": "ExpressionCalc"
+			"path": "Personal_projects/ExpressionCalc"
+		},
+		{
+			"path": "Personal_projects/MadDoctor"
 		}
 	],
 	"settings": {}

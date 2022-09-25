@@ -10,6 +10,9 @@ import space.nixus.maddoc.items.SeveredHead;
 
 import java.util.List;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class Kitchen extends Room {
 
     /**

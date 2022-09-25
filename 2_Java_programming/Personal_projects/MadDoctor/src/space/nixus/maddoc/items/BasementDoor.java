@@ -7,6 +7,9 @@ import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.rooms.Basement;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class BasementDoor extends GameItem {
 
     public static final String NAME = "basement-door";

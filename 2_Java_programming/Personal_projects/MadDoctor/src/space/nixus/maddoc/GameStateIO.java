@@ -5,6 +5,9 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public interface GameStateIO {
 
     /**

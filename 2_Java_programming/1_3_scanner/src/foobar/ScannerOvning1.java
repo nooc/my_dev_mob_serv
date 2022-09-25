@@ -3,7 +3,10 @@ package foobar;
 import java.util.Scanner;
 
 
-/** Scanner exercise 1. */
+/** Scanner exercise 1.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
+*/
 public class ScannerOvning1 {
 
     /** Scanner exercise method.

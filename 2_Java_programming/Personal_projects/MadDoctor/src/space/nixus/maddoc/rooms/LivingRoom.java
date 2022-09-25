@@ -10,6 +10,9 @@ import space.nixus.maddoc.items.GlassHeart;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class LivingRoom extends Room {
 
     /**

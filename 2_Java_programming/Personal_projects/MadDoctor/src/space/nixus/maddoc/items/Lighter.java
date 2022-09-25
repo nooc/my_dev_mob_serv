@@ -4,6 +4,9 @@ import space.nixus.maddoc.Game;
 import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.PlayerContext;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class Lighter extends GameItem {
 
     public static final String NAME = "lighter";

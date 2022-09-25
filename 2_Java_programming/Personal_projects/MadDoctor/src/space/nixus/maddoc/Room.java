@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * Base class for rooms.
+ * 
+ * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public abstract class Room implements GameStateIO {
     protected final Inventory inventory;

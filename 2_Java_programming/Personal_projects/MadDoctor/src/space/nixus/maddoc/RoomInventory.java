@@ -1,5 +1,8 @@
 package space.nixus.maddoc;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class RoomInventory extends Inventory {
     /**
      * Room of this inventory.

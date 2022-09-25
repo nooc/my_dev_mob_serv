@@ -6,6 +6,9 @@ import space.nixus.maddoc.GameItem;
 import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class WallTorch extends GameItem {
 
     public static final String NAME = "wall-torch";

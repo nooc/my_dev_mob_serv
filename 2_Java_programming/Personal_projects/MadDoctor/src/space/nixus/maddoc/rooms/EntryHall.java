@@ -10,6 +10,9 @@ import space.nixus.maddoc.items.Lighter;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public final class EntryHall extends Room {
 
     /**

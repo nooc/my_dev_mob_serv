@@ -9,6 +9,9 @@ import space.nixus.maddoc.items.SpellBook;
 
 import java.util.List;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class RestRoom extends Room {
 
     /**

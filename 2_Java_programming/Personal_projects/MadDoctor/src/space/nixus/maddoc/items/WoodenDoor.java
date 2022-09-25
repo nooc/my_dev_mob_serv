@@ -6,6 +6,9 @@ import space.nixus.maddoc.Manipulator;
 import space.nixus.maddoc.PlayerContext;
 import space.nixus.maddoc.rooms.RitualRoom;
 
+/**
+ * @author Ben Bright <nooc@users.noreply.github.com>
+ */
 public class WoodenDoor extends GameItem {
 
     public static final String NAME = "wooden-door";
