@@ -53,20 +53,20 @@ public class ExpCalc {
 
     /**
      * Evaluate an expression down to a double.
-     * @param exp String
+     * @param expression String
      * @return result as double
      */
-    private double evaluate(String exp)
+    private double evaluate(String expression)
     {
-        var _exp = exp.strip(); // remove spaces
-        var op = getOp(_exp); 
+        var expr = expression.strip(); // remove spaces
+        var op = getOp(expr); 
         if(op == null) {
             // no op: treat as value
-            return Double.parseDouble(_exp);
+            return Double.parseDouble(expr);
         }
         else {
             // op found: apply operator on list of expressions
-            var parts = _exp.split(op.pattern);
+            var parts = expr.split(op.pattern);
             assert parts.length > 1: "Operation is missing a value.";
             double res = evaluate(parts[0]); // Starting L-VALUE
             // perform operations
@@ -83,7 +83,7 @@ public class ExpCalc {
      */
     public static void main(String[] args) {
         
-        var calc = new ExpCalc();
+        var expCalc = new ExpCalc();
 
         // With scanner...
         try(Scanner in = new Scanner(System.in)) {
@@ -95,7 +95,7 @@ public class ExpCalc {
                 var exp = in.nextLine();
 
                 // Evaluate and print.
-                System.out.println("Result: " + calc.evaluate(exp));
+                System.out.println("Result: " + expCalc.evaluate(exp));
             }
         }
         catch(Exception ex) {
