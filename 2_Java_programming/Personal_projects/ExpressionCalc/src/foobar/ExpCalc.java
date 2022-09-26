@@ -3,6 +3,8 @@ package foobar;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import foobar.ops.*;
+
 /**
  * Evaluate simple expressions.
  * Supported binary operators in priority order: * / - +
@@ -18,53 +20,9 @@ import java.util.Scanner;
 public class ExpCalc {
 
       /** Operators in reverse priority order. */
-      private static final String[] OP_LIST = {"+","-","/","*"};
+      private static final String[] OP_LIST = {"+","-","%","/","*"};
 
  
-    /** Multiplication */
-    private class MulOp extends OpBase {
-        MulOp(String op) { super(op); }
-
-        @Override
-        public double operate(double left, double right)
-        {
-            return left * right;
-        }
-    }
-
-    /** Division */
-    private class DivOp extends OpBase {
-        DivOp(String op) { super(op); }
-
-        @Override
-        public double operate(double left, double right)
-        {
-            return left / right;
-        }
-    }
-
-    /** Subtraction */
-    private class SubOp extends OpBase {
-        SubOp(String op) { super(op); }
-
-        @Override
-        public double operate(double left, double right)
-        {
-            return left - right;
-        }
-    }
-
-    /** Addition */
-    private class AddOp extends OpBase {
-        AddOp(String op) { super(op); }
-
-        @Override
-        public double operate(double left, double right)
-        {
-            return left + right;
-        }
-    }
-
     /** Map of operator. */
     private final HashMap<String,OpBase> opMap;
     
@@ -73,6 +31,7 @@ public class ExpCalc {
         opMap = new HashMap<>();
         opMap.put("*", new MulOp("*"));
         opMap.put("/", new DivOp("/"));
+        opMap.put("%", new DivOp("%"));
         opMap.put("-", new SubOp("-"));
         opMap.put("+", new AddOp("+"));
 

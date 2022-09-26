@@ -7,10 +7,10 @@ import java.util.HexFormat;
  * 
  * @author Ben Bright <nooc@users.noreply.github.com>
  */
-abstract class OpBase {
+public abstract class OpBase {
     String pattern; // regex
 
-    OpBase(String op) {
+    protected OpBase(String op) {
         pattern = "\\x"+HexFormat.of().toHexDigits(op.charAt(0)).substring(2);
     }
     /**
@@ -19,5 +19,5 @@ abstract class OpBase {
      * @param right Right as double.
      * @return Resulting value.
      */
-    abstract double operate(double left, double right);
+    public abstract double operate(double left, double right);
 }
