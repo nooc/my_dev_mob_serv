@@ -64,7 +64,7 @@ public class Game {
         // try loading game
         try {
             var cfg = getConfig();
-            player.load(null);
+            player.load(cfg);
             if (cfg == null) {
                 fmt(BEGINNING);
             }
