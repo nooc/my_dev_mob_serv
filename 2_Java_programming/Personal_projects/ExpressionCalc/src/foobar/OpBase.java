@@ -8,8 +8,15 @@ import java.util.HexFormat;
  * @author Ben Bright <nooc@users.noreply.github.com>
  */
 public abstract class OpBase {
-    String pattern; // regex
 
+    // regex for splitting expression strings
+    String pattern;
+
+    /**
+     * Constructor
+     * Creates split pattern for op.
+     * @param op String representation of op character.
+     */
     protected OpBase(String op) {
         pattern = "\\x"+HexFormat.of().toHexDigits(op.charAt(0)).substring(2);
     }

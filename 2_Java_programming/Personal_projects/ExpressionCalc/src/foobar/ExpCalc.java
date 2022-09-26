@@ -8,12 +8,17 @@ import foobar.ops.*;
 /**
  * Evaluate simple expressions.
  * Supported binary operators in priority order: * / - +
- * Can not handle unary negative operator, ie. -1.
  * 
  * Example:
  * 
  * Input expression: 8 * 2 + 9 - 10
  * Result: 15.0
+ * 
+ * The above expression is evaluated in operator priority order:
+ * 1: (8 * 2) + (9 - 10)
+ * 2:      16 + (9 - 10)
+ * 3:      16 + -1
+ * 4:      15
  * 
  * @author Ben Bright <nooc@users.noreply.github.com>
  */
@@ -23,7 +28,7 @@ public class ExpCalc {
       private static final String[] OP_LIST = {"+","-","%","/","*"};
 
  
-    /** Map of operator. */
+    /** Map of operators. */
     private final HashMap<String,OpBase> opMap;
     
     private ExpCalc() {
@@ -59,13 +64,14 @@ public class ExpCalc {
     private double evaluate(String expression)
     {
         var expr = expression.strip(); // remove spaces
-        var op = getOp(expr); 
+        var op = getOp(expr); // get first lowest priority op
         if(op == null) {
             // no op: treat as value
             return Double.parseDouble(expr);
         }
         else {
             // op found: apply operator on list of expressions
+            // by splitting expression string using the current op.
             var parts = expr.split(op.pattern);
             assert parts.length > 1: "Operation is missing a value.";
             double res = evaluate(parts[0]); // Starting L-VALUE
