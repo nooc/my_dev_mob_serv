@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import foobar.ops.*;
 
+
 /**
  * Evaluate simple expressions.
  * Supported binary operators in priority order: * / - +
@@ -36,10 +37,9 @@ public class ExpCalc {
         opMap = new HashMap<>();
         opMap.put("*", new MulOp("*"));
         opMap.put("/", new DivOp("/"));
-        opMap.put("%", new DivOp("%"));
+        opMap.put("%", new ModOp("%"));
         opMap.put("-", new SubOp("-"));
         opMap.put("+", new AddOp("+"));
-
     }
     
     /**

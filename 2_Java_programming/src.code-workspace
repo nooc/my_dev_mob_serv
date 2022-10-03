@@ -8,7 +8,12 @@
 		},
 		{
 			"path": "Personal_projects/ExpressionCalc"
+		},
+		{
+			"path": "3_self_test"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }
