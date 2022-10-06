@@ -91,9 +91,9 @@ public class Game {
                         lookat <target> - Look at the target.
                         inv - Show inventory.
                         get <item> - Pick up item from the current room.
-                        use <item> - Use item in the current room or in your inventory.
-                        use <item> on <target> - Use source on target.
-                        put <item> on <target> - Put source on target.
+                        use <item> - Use an item in the current room or in your inventory.
+                            <item> on <target> - Use an item on another item.
+                        put <item> on <target> - Put an item source on target.
                         drop <item> - Drop item in current room.
                         goto <target> - Move to target.""");
 
