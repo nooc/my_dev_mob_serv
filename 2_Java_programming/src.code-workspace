@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "3_self_test"
+		},
+		{
+			"path": "5_user_repository"
 		}
 	],
 	"settings": {
