@@ -52,7 +52,7 @@ public class ScheduledFlight {
     }
 
     /**
-     * Match if from and to match and time is on the same day.
+     * Match if from and to match and time is between target day and target day + 2 days.
      *
      * @param from
      * @param to
