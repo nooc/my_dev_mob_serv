@@ -116,7 +116,7 @@ public class Main {
   }
 
 
-  public static void hasElements(int size, String title, List list) {
+  public static void hasElements(int size, String title, List<? extends Object> list) {
     if(list.size() != size) {
       StringBuilder builder = new StringBuilder();
       builder.append("Failed ").append(title);
@@ -129,11 +129,11 @@ public class Main {
     }
   }
 
-  public static void hasStructure(String structure, String title, List list) {
+  public static void hasStructure(String structure, String title, List<? extends Object> list) {
     hasStructure(structure, title, list, false);
   }
 
-  public static void hasStructure(String structure, String title, List list, boolean silent) {
+  public static void hasStructure(String structure, String title, List<? extends Object> list, boolean silent) {
     if(!list.toString().equals(structure)) {
       StringBuilder builder = new StringBuilder();
       builder.append("Failed ").append(title);
