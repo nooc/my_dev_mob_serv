@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "booking_app"
+		},
+		{
+			"path": "uml-order-demo"
 		}
 	],
 	"settings": {
