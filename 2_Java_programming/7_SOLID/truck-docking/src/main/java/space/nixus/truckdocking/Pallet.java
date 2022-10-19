@@ -3,9 +3,10 @@ package space.nixus.truckdocking;
 
 public class Pallet implements Cargo {
 
-    private static final double PALLET_WEIGHT = 25; // kg
+    public static final double PALLET_WEIGHT = 25; // kg
     public static final double MAX_PALLET_WEIGHT = 1500; // kg
 
+    // cargo space of this pallet
     private CargoSpace boxes;
 
     /**

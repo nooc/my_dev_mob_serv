@@ -2,7 +2,9 @@ package space.nixus.truckdocking;
 
 public class HeavyTruck extends Truck {
 
+    // name
     public static final String TYPE = "Heavy truck";
+    // unloaded weight
     public static final double UNLOADED_WEIGHT = 6000;
 
 
@@ -23,6 +25,9 @@ public class HeavyTruck extends Truck {
         return TYPE;
     }
 
+    /**
+     * @see LoadableVehicle.getUnloadedWeight
+     */
     @Override
     public double getUnloadedWeight()
     {

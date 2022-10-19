@@ -5,7 +5,7 @@ import java.util.function.Function;
 public abstract class DockingStation implements Dockable {
 
     // Station id
-    protected final String name;
+    private final String name;
     // Docked vehicle
     private LoadableVehicle vehicle;
     // Special case. When true, may always dock.
