@@ -1,6 +1,6 @@
 package space.nixus.truckdocking;
 
-public interface Vecicle {
+public interface Vehicle {
 
     /**
      * Get vehicle type.
