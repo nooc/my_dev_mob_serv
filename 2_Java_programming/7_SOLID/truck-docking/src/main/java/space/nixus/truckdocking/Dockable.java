@@ -9,9 +9,10 @@ public interface Dockable {
     String getName();
 
     /**
-     * Print satus of dockable.
+     * Get docked vehicle.
+     * @return LoadableVehicle or null
      */
-    void printStationStatus();
+    LoadableVehicle getVehicle();
 
     /**
      * Dock a vehicle to this dockable.

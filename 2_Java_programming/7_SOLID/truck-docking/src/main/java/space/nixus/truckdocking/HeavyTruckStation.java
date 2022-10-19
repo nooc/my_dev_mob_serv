@@ -4,7 +4,7 @@ public class HeavyTruckStation extends DockingStation {
 
     /**
      * Constructor
-     * @param name Ststion id
+     * @param name Station name
      */
     public HeavyTruckStation(String name)
     {

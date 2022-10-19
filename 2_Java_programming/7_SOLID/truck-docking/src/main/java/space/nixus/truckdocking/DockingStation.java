@@ -39,22 +39,11 @@ public abstract class DockingStation implements Dockable {
     }
 
     /**
-     * @return the id
+     * @return The station name
      */
     public String getName()
     {
         return name;
-    }
-
-    /**
-     * @see Dockable.printStationStatus
-     */
-    @Override
-    public void printStationStatus() {
-        if(vehicle != null) {
-            System.out.format("%s: ", name);
-            vehicle.printStatus();
-        }
     }
 
     /**
@@ -70,7 +59,17 @@ public abstract class DockingStation implements Dockable {
     }
 
     /**
-     * Test special case dock.
+     * @see Dockable.getVehicle
+     */
+    @Override
+    public LoadableVehicle getVehicle()
+    {
+        return vehicle;
+    }
+
+    /**
+     * Test special case.
+     * If special case is true, permit docking.
      * @param vehicle Vehicle to test
      * @return Success or fail
      */
@@ -80,6 +79,7 @@ public abstract class DockingStation implements Dockable {
 
     /**
      * Set special case rule.
+     * Special case rule returns true if vehicle is a special case.
      * @param specialCase
      */
     public void setSpecialCase(Function<LoadableVehicle, Boolean> specialCase) {

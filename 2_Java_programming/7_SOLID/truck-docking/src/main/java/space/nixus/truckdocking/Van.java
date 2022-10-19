@@ -14,7 +14,7 @@ public class Van extends LoadableVehicle {
     }
 
     /**
-     * @see Vecicle.getType
+     * @see Vehicle.getType
      */
     @Override
     public String getType()

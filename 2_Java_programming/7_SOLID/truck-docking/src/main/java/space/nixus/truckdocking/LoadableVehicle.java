@@ -1,6 +1,6 @@
 package space.nixus.truckdocking;
 
-public abstract class LoadableVehicle implements Vecicle {
+public abstract class LoadableVehicle implements Vehicle {
 
     /**
      * Vehicle cargo space.
@@ -23,16 +23,6 @@ public abstract class LoadableVehicle implements Vecicle {
      */
     public boolean loadCargo(Cargo cargo) {
         return cargoSpace.addCargo(cargo);
-    }
-
-    /**
-     * Print vehicle type and cargo weight in kg. 
-     */
-    public void printStatus() {
-        System.out.format("%s with a total weight of %d kg.\n",
-            getType(),
-            (int)Math.ceil(cargoSpace.getWeight() + getUnloadedWeight())
-        );
     }
 
     /**

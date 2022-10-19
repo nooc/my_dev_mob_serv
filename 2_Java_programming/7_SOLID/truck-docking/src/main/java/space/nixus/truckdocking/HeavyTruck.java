@@ -15,7 +15,7 @@ public class HeavyTruck extends Truck {
     }
 
     /**
-     * @see Vecicle.getType
+     * @see Vehicle.getType
      */
     @Override
     public String getType()

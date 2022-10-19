@@ -51,7 +51,7 @@ public class App
      */
     private boolean mainMenu() {
         System.out.println("""
-            Truck Docks 'Dumpa Mera':
+            Truck docks 'Dumpa Mera':
 
             1. See docked vehicles.
             2. Register new vehicle for unloading.
@@ -60,7 +60,7 @@ public class App
             """);
         var input = getInput("Choose");
         if(input.equals("1")) {
-            docks.printdockStatus();
+            PrintHelper.printDocksStatus(docks);
         }
         else if(input.equals("2")) {
             registerNewVehicle();
@@ -116,7 +116,10 @@ public class App
     }
 
     /**
-     * Load vehicle with cargo.
+     * Load vehicle up to specified amount.
+     * Trucks can take pallets and boxes while vans can only take boxes.
+     * For trucks, any weight above 300kg will be loaded as pallets containing boxes.
+     * Boxes will have a weight of max 100kg.
      * @param vehicle A LoadableVehicle
      * @param cargoWeight Cargo weight
      */
@@ -157,6 +160,11 @@ public class App
         }
     }
 
+    /**
+     * Input prompt.
+     * @param prompt Prompt string
+     * @return non empty string
+     */
     private String getInput(String prompt) {
         while (true) {
             System.out.format("%s: ", prompt);
