@@ -9,6 +9,7 @@ public abstract class LoadableVehicle implements Vehicle {
 
     /**
      * Constructor
+     *
      * @param maxLoad Maximum capacity in kg.
      */
     protected LoadableVehicle(double maxLoad) {
@@ -18,6 +19,7 @@ public abstract class LoadableVehicle implements Vehicle {
     /**
      * Load cargo into vehicle cargo hold.
      * Will fail if weight exceeds cargo hold capacity.
+     *
      * @param cargo Cargo to load.
      * @return True if successful, else false.
      */
@@ -27,6 +29,7 @@ public abstract class LoadableVehicle implements Vehicle {
 
     /**
      * Get weight of cargo in kg.
+     *
      * @return Weight in kg
      */
     public double getCargoWeight() {
@@ -34,17 +37,17 @@ public abstract class LoadableVehicle implements Vehicle {
     }
 
     /**
-     * @see Vehicle.getTotalWeight
      * @return Weight in kg
+     * @see Vehicle.getTotalWeight
      */
     @Override
-    public double getTotalWeight()
-    {
+    public double getTotalWeight() {
         return getUnloadedWeight() + getCargoWeight();
     }
 
     /**
      * Get unloaded weight.
+     *
      * @return Weight in kg
      */
     public abstract double getUnloadedWeight();

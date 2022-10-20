@@ -4,10 +4,10 @@ public class HeavyTruckStation extends DockingStation {
 
     /**
      * Constructor
+     *
      * @param name Station name
      */
-    public HeavyTruckStation(String name)
-    {
+    public HeavyTruckStation(String name) {
         super(name);
     }
 
@@ -16,7 +16,7 @@ public class HeavyTruckStation extends DockingStation {
      */
     @Override
     public boolean dockVehicle(LoadableVehicle vehicle) {
-        if(testSpecialCase(vehicle) || vehicle instanceof HeavyTruck) {
+        if (testSpecialCase(vehicle) || vehicle instanceof HeavyTruck) {
             return super.dockVehicle(vehicle);
         }
         return false;

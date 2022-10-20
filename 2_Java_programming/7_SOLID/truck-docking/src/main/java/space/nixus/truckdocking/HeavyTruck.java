@@ -10,18 +10,18 @@ public class HeavyTruck extends Truck {
 
     /**
      * Constructor
+     *
      * @param totalWeight Total weight in kg
      */
     public HeavyTruck(double totalWeight) {
-        super(totalWeight-UNLOADED_WEIGHT);
+        super(totalWeight - UNLOADED_WEIGHT);
     }
 
     /**
      * @see Vehicle.getType
      */
     @Override
-    public String getType()
-    {
+    public String getType() {
         return TYPE;
     }
 
@@ -29,8 +29,7 @@ public class HeavyTruck extends Truck {
      * @see LoadableVehicle.getUnloadedWeight
      */
     @Override
-    public double getUnloadedWeight()
-    {
+    public double getUnloadedWeight() {
         return UNLOADED_WEIGHT;
     }
 }

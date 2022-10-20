@@ -9,29 +9,29 @@ public class Van extends LoadableVehicle {
 
     /**
      * Constructor
+     *
      * @param totalWeight Total weight in kg.
      */
     public Van(double totalWeight) {
-        super(totalWeight-UNLOADED_WEIGHT);
+        super(totalWeight - UNLOADED_WEIGHT);
     }
 
     /**
      * @see Vehicle.getType
      */
     @Override
-    public String getType()
-    {
+    public String getType() {
         return TYPE;
     }
 
     /**
      * Load box cargo into vehicle cargospace.
+     *
      * @param cargo Box cargo
      */
     @Override
-    public boolean loadCargo(Cargo cargo)
-    {
-        if(cargo instanceof Box) {
+    public boolean loadCargo(Cargo cargo) {
+        if (cargo instanceof Box) {
             return super.loadCargo(cargo);
         }
         return false;
@@ -41,8 +41,7 @@ public class Van extends LoadableVehicle {
      * @see LoadableVehicle.getUnloadedWeight
      */
     @Override
-    public double getUnloadedWeight()
-    {
+    public double getUnloadedWeight() {
         return UNLOADED_WEIGHT;
     }
 }

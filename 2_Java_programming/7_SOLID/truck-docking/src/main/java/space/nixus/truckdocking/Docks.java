@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Docks {
     // dockables
-    private List<Dockable> stations;
+    private final List<Dockable> stations;
 
     /**
      * Construct the docks
@@ -18,11 +18,12 @@ public class Docks {
     /**
      * Add a dockable station to docks.
      * Fails with false if name is not unique.
+     *
      * @param dockable Dockable station
      * @return True if success, else false
      */
     public boolean addStation(Dockable dockable) {
-        if(stations.contains(dockable)) {
+        if (stations.contains(dockable)) {
             return false;
         }
         return stations.add(dockable);
@@ -30,12 +31,13 @@ public class Docks {
 
     /**
      * Dock a LoadableVehicle vehicle.
+     *
      * @param vehicle A LoadableVehicle
      * @return True if success, else false
      */
     public boolean dockVehicle(LoadableVehicle vehicle) {
-        for(var station : stations) {
-            if(station.dockVehicle(vehicle)) {
+        for (var station : stations) {
+            if (station.dockVehicle(vehicle)) {
                 return true;
             }
         }
@@ -44,6 +46,7 @@ public class Docks {
 
     /**
      * Get list of occupied stations.
+     *
      * @return
      */
     public List<Dockable> getOccupiedStations() {

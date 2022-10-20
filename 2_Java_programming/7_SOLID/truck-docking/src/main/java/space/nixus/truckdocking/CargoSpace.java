@@ -5,12 +5,13 @@ import java.util.List;
 
 public class CargoSpace {
     // Maximum load of cargo space
-    private double maxLoad;
+    private final double maxLoad;
     // List of cargo
-    private List<Cargo> cargo;
+    private final List<Cargo> cargo;
 
     /**
      * Constructor
+     *
      * @param maxLoad Maximum load capacity in kg.
      */
     public CargoSpace(double maxLoad) {
@@ -19,13 +20,13 @@ public class CargoSpace {
     }
 
     /**
-     * @see Cargo.getWeight
      * @return weight in kg
+     * @see Cargo.getWeight
      */
     public double getWeight() {
         double totalWeight = 0;
         // sdum weights
-        for(var item : cargo) {
+        for (var item : cargo) {
             totalWeight += item.getWeight();
         }
         return totalWeight;
@@ -33,11 +34,12 @@ public class CargoSpace {
 
     /**
      * Add a cargo item to this cargo space.
+     *
      * @param cargo Cargo
      * @return True if added, false if no more capacity.
      */
     public boolean addCargo(Cargo cargo) {
-        if(getWeight() + cargo.getWeight() > maxLoad) {
+        if (getWeight() + cargo.getWeight() > maxLoad) {
             return false;
         }
         return this.cargo.add(cargo);

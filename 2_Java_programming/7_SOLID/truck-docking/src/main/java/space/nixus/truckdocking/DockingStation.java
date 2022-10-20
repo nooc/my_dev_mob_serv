@@ -13,6 +13,7 @@ public abstract class DockingStation implements Dockable {
 
     /**
      * Constructor
+     *
      * @param name Dock name
      */
     protected DockingStation(String name) {
@@ -24,25 +25,22 @@ public abstract class DockingStation implements Dockable {
      * Name unique.
      */
     @Override
-    public boolean equals(Object obj)
-    {
-        return obj instanceof Dockable && ((Dockable)obj).getName().equals(name);
+    public boolean equals(Object obj) {
+        return obj instanceof Dockable && ((Dockable) obj).getName().equals(name);
     }
 
     /**
      * Name unique.
      */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return name.hashCode();
     }
 
     /**
      * @return The station name
      */
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
@@ -51,10 +49,10 @@ public abstract class DockingStation implements Dockable {
      */
     @Override
     public boolean dockVehicle(LoadableVehicle vehicle) {
-        if(this.vehicle == null) {
+        if (this.vehicle == null) {
             this.vehicle = vehicle;
             return true;
-        }   
+        }
         return false;
     }
 
@@ -62,14 +60,14 @@ public abstract class DockingStation implements Dockable {
      * @see Dockable.getVehicle
      */
     @Override
-    public LoadableVehicle getVehicle()
-    {
+    public LoadableVehicle getVehicle() {
         return vehicle;
     }
 
     /**
      * Test special case.
      * If special case is true, permit docking.
+     *
      * @param vehicle Vehicle to test
      * @return Success or fail
      */
@@ -80,6 +78,7 @@ public abstract class DockingStation implements Dockable {
     /**
      * Set special case rule.
      * Special case rule returns true if vehicle is a special case.
+     *
      * @param specialCase
      */
     public void setSpecialCase(Function<LoadableVehicle, Boolean> specialCase) {

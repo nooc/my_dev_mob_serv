@@ -1,18 +1,17 @@
 package space.nixus.truckdocking;
 
 public class Box implements Cargo {
-
     /**
      * Box weight.
      */
-    private double weight;
+    private final double weight;
 
     /**
      * Constructor
+     *
      * @param weight Weight of box in kg.
      */
-    public Box(double weight)
-    {
+    public Box(double weight) {
         this.weight = weight;
     }
 
@@ -20,8 +19,7 @@ public class Box implements Cargo {
      * @see Cargo.getWeight
      */
     @Override
-    public double getWeight()
-    {
+    public double getWeight() {
         return weight;
     }
 }
