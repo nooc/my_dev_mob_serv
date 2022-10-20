@@ -1,5 +1,8 @@
 package space.nixus.truckdocking;
 
+/**
+ * A Dockable represents a dockable station where {@link LoadableVehicle}s can dock.
+ */
 public interface Dockable {
 
     /**

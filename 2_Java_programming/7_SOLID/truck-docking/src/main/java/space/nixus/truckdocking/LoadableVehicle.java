@@ -1,5 +1,8 @@
 package space.nixus.truckdocking;
 
+/**
+ * A LoadableVehicle is a {@link Vehicle} that can be loaded with {@link Cargo}. 
+ */
 public abstract class LoadableVehicle implements Vehicle {
 
     /**

@@ -1,5 +1,8 @@
 package space.nixus.truckdocking;
 
+/**
+ * Heavy loading station extension of {@link DockingStation}.
+ */
 public class HeavyTruckStation extends DockingStation {
 
     /**

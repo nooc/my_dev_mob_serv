@@ -1,5 +1,8 @@
 package space.nixus.truckdocking;
 
+/**
+ * Van implementation of {@link LoadableVehicle}.
+ */
 public class Van extends LoadableVehicle {
 
     // name

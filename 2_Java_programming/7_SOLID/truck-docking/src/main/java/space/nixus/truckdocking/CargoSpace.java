@@ -3,6 +3,9 @@ package space.nixus.truckdocking;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A cargo space can hold {@link Cargo Cargo} objects up to maxLoad kg.
+ */
 public class CargoSpace {
     // Maximum load of cargo space
     private final double maxLoad;

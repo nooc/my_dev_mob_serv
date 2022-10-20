@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The Docks represents a palce with one or more {@link Dockable} stations.
+ */
 public class Docks {
     // dockables
     private final List<Dockable> stations;

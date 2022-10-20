@@ -1,7 +1,7 @@
 package space.nixus.truckdocking;
 
 /**
- * Print helper.
+ * Print helper contains console printing functions.
  */
 public final class PrintHelper {
 
@@ -34,7 +34,7 @@ public final class PrintHelper {
      * @param vehicle
      */
     private static void printVehicle(Vehicle vehicle) {
-        System.out.format("%s with a total weight of %d kg.\n",
+        System.out.format("%s with a total weight of %.0f kg.\n",
                 vehicle.getType(),
                 Math.ceil(vehicle.getTotalWeight())
         );

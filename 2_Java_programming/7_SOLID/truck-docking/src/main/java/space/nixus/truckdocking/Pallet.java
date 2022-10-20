@@ -1,6 +1,8 @@
 package space.nixus.truckdocking;
 
-
+/**
+ * A Pallet is a type of {@link Cargo} that can be loaded with {@link Box} cargo.
+ */
 public class Pallet implements Cargo {
 
     public static final double PALLET_WEIGHT = 25; // kg

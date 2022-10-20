@@ -2,6 +2,9 @@ package space.nixus.truckdocking;
 
 import java.util.function.Function;
 
+/**
+ * An abstract base class for Dockable stations and implements {@link Dockable}.
+ */
 public abstract class DockingStation implements Dockable {
 
     // Station id

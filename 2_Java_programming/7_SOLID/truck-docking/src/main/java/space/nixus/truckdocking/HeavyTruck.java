@@ -1,5 +1,8 @@
 package space.nixus.truckdocking;
 
+/**
+ * Heavy truck implementation of {@link Truck}.
+ */
 public class HeavyTruck extends Truck {
 
     // name

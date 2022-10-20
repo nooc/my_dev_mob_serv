@@ -1,5 +1,9 @@
 package space.nixus.truckdocking;
 
+/**
+ * The base class fro all vehicles.
+ * Has type and weight.
+ */
 public interface Vehicle {
 
     /**

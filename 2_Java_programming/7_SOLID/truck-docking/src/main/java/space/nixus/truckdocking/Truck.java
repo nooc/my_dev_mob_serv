@@ -1,7 +1,7 @@
 package space.nixus.truckdocking;
 
 /**
- * Superclass for all trucks
+ * Base class for all truck type {@link LoadableVehicle}s.
  */
 public abstract class Truck extends LoadableVehicle {
 
