@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "truck-docking2"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
+}
