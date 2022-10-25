@@ -57,16 +57,16 @@ public class App {
 
                 1. See docked vehicles.
                 2. Register new vehicle for unloading.
-                0. QUIT
+                3. QUIT
 
                 """);
-        var input = getInput("Choose");
-        if (input.equals("1")) {
+        var input = getInt("Choose", 1, 3);
+        if (input==1) {
             PrintHelper.printDocksStatus(docks);
-        } else if (input.equals("2")) {
+        } else if (input==2) {
             registerNewVehicle();
-        } else return !input.equals("3");
-        return true;
+        }
+        return input!=3;
     }
 
     /**
@@ -84,14 +84,14 @@ public class App {
 
                 """, types[0], types[1], types[2]);
         // get type
-        var vehicleType = getInt("   Type", 1, 4);
-        if(vehicleType==4) {
+        var selected = getInt("   Type", 1, 4);
+        if(selected==4) {
             return;
         }
         // get weight
         int weight = getInt(" Weight", VehicleType.Van.WEIGHT, 40000);
         // add vehicle if valid weight
-        ILoadableVehicle vehicle = LoadableVehicleFactory.createVehicle(VehicleType.values()[vehicleType], weight);
+        ILoadableVehicle vehicle = LoadableVehicleFactory.createVehicle(VehicleType.values()[selected-1], weight);
         // if not valid, print error
         if (vehicle==null) {
             System.out.println("\nWeight must equal or exceed unloaded weight:");

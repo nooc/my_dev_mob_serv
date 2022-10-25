@@ -7,7 +7,7 @@ import space.nixus.truckdocking.models.VehicleType;
 /**
  * Van extension of {@link LoadableVehicle}.
  */
-public class Van extends LoadableVehicle {
+class Van extends LoadableVehicle {
 
     /**
      * Constructor

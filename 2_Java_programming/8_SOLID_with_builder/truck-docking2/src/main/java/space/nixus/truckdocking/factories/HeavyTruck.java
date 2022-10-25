@@ -5,7 +5,7 @@ import space.nixus.truckdocking.models.VehicleType;
 /**
  * Heavy truck extension of {@link LoadableVehicle}.
  */
-public class HeavyTruck extends LoadableVehicle {
+class HeavyTruck extends LoadableVehicle {
 
     /**
      * Constructor
