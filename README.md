@@ -1,4 +1,4 @@
-# My School Programme Repository
+# Repository for School Assignments Etc.
 
 **Software Developer for Mobobility Services**
 
