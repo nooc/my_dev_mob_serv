@@ -1,17 +1,11 @@
 package space.nixus.truckdocking.factories;
 
-import space.nixus.truckdocking.models.Truck;
+import space.nixus.truckdocking.models.VehicleType;
 
 /**
- * Heavy truck implementation of {@link Truck}.
+ * Heavy truck extension of {@link LoadableVehicle}.
  */
-public class HeavyTruck extends Truck {
-
-    // name
-    public static final String TYPE = "Heavy truck";
-    // unloaded weight
-    public static final double UNLOADED_WEIGHT = 6000;
-
+public class HeavyTruck extends LoadableVehicle {
 
     /**
      * Constructor
@@ -19,22 +13,14 @@ public class HeavyTruck extends Truck {
      * @param totalWeight Total weight in kg
      */
     HeavyTruck(double totalWeight) {
-        super(totalWeight - UNLOADED_WEIGHT);
+        super(totalWeight - VehicleType.HeavyTruck.WEIGHT);
     }
 
     /**
-     * @see Vehicle.getType
+     * @see IVehicle.getType
      */
     @Override
-    public String getType() {
-        return TYPE;
-    }
-
-    /**
-     * @see LoadableVehicle.getUnloadedWeight
-     */
-    @Override
-    public double getUnloadedWeight() {
-        return UNLOADED_WEIGHT;
+    public VehicleType getType() {
+        return VehicleType.HeavyTruck;
     }
 }

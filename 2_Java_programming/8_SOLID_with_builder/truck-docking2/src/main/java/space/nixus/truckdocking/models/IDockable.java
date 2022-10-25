@@ -1,9 +1,9 @@
 package space.nixus.truckdocking.models;
 
 /**
- * A Dockable represents a dockable station where {@link LoadableVehicle}s can dock.
+ * A Dockable represents a dockable station where {@link ILoadableVehicle}s can dock.
  */
-public interface Dockable {
+public interface IDockable {
 
     /**
      * Name of the dockable.
@@ -17,7 +17,7 @@ public interface Dockable {
      *
      * @return LoadableVehicle or null
      */
-    LoadableVehicle getVehicle();
+    ILoadableVehicle getVehicle();
 
     /**
      * Dock a vehicle to this dockable.
@@ -26,5 +26,5 @@ public interface Dockable {
      * @param vehicle Vehicle to dock.
      * @return True if success, else false.
      */
-    boolean dockVehicle(LoadableVehicle vehicle);
+    boolean dockVehicle(ILoadableVehicle vehicle);
 }

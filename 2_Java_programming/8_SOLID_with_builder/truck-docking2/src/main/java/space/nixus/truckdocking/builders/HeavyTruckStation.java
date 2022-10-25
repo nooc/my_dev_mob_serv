@@ -1,13 +1,12 @@
 package space.nixus.truckdocking.builders;
 
-import space.nixus.truckdocking.factories.HeavyTruck;
-import space.nixus.truckdocking.models.DockingStation;
-import space.nixus.truckdocking.models.LoadableVehicle;
+import space.nixus.truckdocking.models.ILoadableVehicle;
+import space.nixus.truckdocking.models.VehicleType;
 
 /**
  * Heavy loading station extension of {@link DockingStation}.
  */
-public class HeavyTruckStation extends DockingStation {
+class HeavyTruckStation extends DockingStation {
 
     /**
      * Constructor
@@ -19,11 +18,11 @@ public class HeavyTruckStation extends DockingStation {
     }
 
     /**
-     * @see Dockable.dockVehicle
+     * @see IDockable.dockVehicle
      */
     @Override
-    public boolean dockVehicle(LoadableVehicle vehicle) {
-        if (testSpecialCase(vehicle) || vehicle instanceof HeavyTruck) {
+    public boolean dockVehicle(ILoadableVehicle vehicle) {
+        if (testSpecialCase(vehicle) || vehicle.getType().equals(VehicleType.HeavyTruck)) {
             return super.dockVehicle(vehicle);
         }
         return false;

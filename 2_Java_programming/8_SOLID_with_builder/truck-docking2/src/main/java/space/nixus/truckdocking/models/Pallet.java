@@ -1,9 +1,9 @@
 package space.nixus.truckdocking.models;
 
 /**
- * A Pallet is a type of {@link Cargo} that can be loaded with {@link Box} cargo.
+ * A Pallet is a type of {@link ICargo} that can be loaded with {@link Box} cargo.
  */
-public class Pallet implements Cargo {
+public class Pallet implements ICargo {
 
     public static final double PALLET_WEIGHT = 25; // kg
     public static final double MAX_PALLET_WEIGHT = 1500; // kg
@@ -20,7 +20,7 @@ public class Pallet implements Cargo {
     }
 
     /**
-     * @see Cargo.getWeight
+     * @see ICargo.getWeight
      */
     @Override
     public double getWeight() {

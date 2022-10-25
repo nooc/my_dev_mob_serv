@@ -1,18 +1,13 @@
 package space.nixus.truckdocking.factories;
 
 import space.nixus.truckdocking.models.Box;
-import space.nixus.truckdocking.models.Cargo;
-import space.nixus.truckdocking.models.LoadableVehicle;
+import space.nixus.truckdocking.models.ICargo;
+import space.nixus.truckdocking.models.VehicleType;
 
 /**
- * Van implementation of {@link LoadableVehicle}.
+ * Van extension of {@link LoadableVehicle}.
  */
 public class Van extends LoadableVehicle {
-
-    // name
-    public static final String TYPE = "Van";
-    // unloaded weight
-    public static final double UNLOADED_WEIGHT = 1500;
 
     /**
      * Constructor
@@ -20,15 +15,15 @@ public class Van extends LoadableVehicle {
      * @param totalWeight Total weight in kg.
      */
     Van(double totalWeight) {
-        super(totalWeight - UNLOADED_WEIGHT);
+        super(totalWeight - VehicleType.Van.WEIGHT);
     }
 
     /**
-     * @see Vehicle.getType
+     * @see IVehicle.getType
      */
     @Override
-    public String getType() {
-        return TYPE;
+    public VehicleType getType() {
+        return VehicleType.Van;
     }
 
     /**
@@ -37,18 +32,10 @@ public class Van extends LoadableVehicle {
      * @param cargo Box cargo
      */
     @Override
-    public boolean loadCargo(Cargo cargo) {
+    public boolean loadCargo(ICargo cargo) {
         if (cargo instanceof Box) {
             return super.loadCargo(cargo);
         }
         return false;
-    }
-
-    /**
-     * @see LoadableVehicle.getUnloadedWeight
-     */
-    @Override
-    public double getUnloadedWeight() {
-        return UNLOADED_WEIGHT;
     }
 }

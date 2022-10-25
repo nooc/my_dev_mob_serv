@@ -4,14 +4,14 @@ package space.nixus.truckdocking.models;
  * The base class fro all vehicles.
  * Has type and weight.
  */
-public interface Vehicle {
+public interface IVehicle {
 
     /**
      * Get vehicle type.
      *
-     * @return Type string
+     * @return Type
      */
-    String getType();
+    VehicleType getType();
 
     /**
      * Get total vehicle weight.

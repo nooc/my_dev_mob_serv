@@ -1,29 +1,28 @@
 package space.nixus.truckdocking.builders;
 
-import space.nixus.truckdocking.factories.LightTruck;
-import space.nixus.truckdocking.models.DockingStation;
-import space.nixus.truckdocking.models.LoadableVehicle;
+import space.nixus.truckdocking.models.ILoadableVehicle;
+import space.nixus.truckdocking.models.VehicleType;
 
 /**
  * Light loading station extension of {@link DockingStation}.
  */
-public class LightTruckStation extends DockingStation {
+class LightTruckStation extends DockingStation {
 
     /**
      * Constructor
      *
      * @param id Ststion id
      */
-    public LightTruckStation(String id) {
+    LightTruckStation(String id) {
         super(id);
     }
 
     /**
-     * @see Dockable.dockVehicle
+     * @see IDockable.dockVehicle
      */
     @Override
-    public boolean dockVehicle(LoadableVehicle vehicle) {
-        if (testSpecialCase(vehicle) || vehicle instanceof LightTruck) {
+    public boolean dockVehicle(ILoadableVehicle vehicle) {
+        if (testSpecialCase(vehicle) || vehicle.getType().equals(VehicleType.LightTruck)) {
             return super.dockVehicle(vehicle);
         }
         return false;

@@ -1,18 +1,20 @@
-package space.nixus.truckdocking.models;
+package space.nixus.truckdocking.builders;
 
 import java.util.function.Function;
+import space.nixus.truckdocking.models.IDockable;
+import space.nixus.truckdocking.models.ILoadableVehicle;
 
 /**
- * An abstract base class for Dockable stations and implements {@link Dockable}.
+ * An abstract base class for Dockable stations and implements {@link IDockable}.
  */
-public abstract class DockingStation implements Dockable {
+abstract class DockingStation implements IDockable {
 
     // Station id
     private final String name;
     // Docked vehicle
-    private LoadableVehicle vehicle;
+    private ILoadableVehicle vehicle;
     // Special case. When true, may always dock.
-    private Function<LoadableVehicle, Boolean> specialCase;
+    private Function<ILoadableVehicle, Boolean> specialCase;
 
     /**
      * Constructor
@@ -29,7 +31,7 @@ public abstract class DockingStation implements Dockable {
      */
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Dockable && ((Dockable) obj).getName().equals(name);
+        return obj instanceof IDockable && ((IDockable) obj).getName().equals(name);
     }
 
     /**
@@ -48,10 +50,10 @@ public abstract class DockingStation implements Dockable {
     }
 
     /**
-     * @see Dockable.dockVehicle
+     * @see IDockable.dockVehicle
      */
     @Override
-    public boolean dockVehicle(LoadableVehicle vehicle) {
+    public boolean dockVehicle(ILoadableVehicle vehicle) {
         if (this.vehicle == null) {
             this.vehicle = vehicle;
             return true;
@@ -60,10 +62,10 @@ public abstract class DockingStation implements Dockable {
     }
 
     /**
-     * @see Dockable.getVehicle
+     * @see IDockable.getVehicle
      */
     @Override
-    public LoadableVehicle getVehicle() {
+    public ILoadableVehicle getVehicle() {
         return vehicle;
     }
 
@@ -74,7 +76,7 @@ public abstract class DockingStation implements Dockable {
      * @param vehicle Vehicle to test
      * @return Success or fail
      */
-    protected boolean testSpecialCase(LoadableVehicle vehicle) {
+    protected boolean testSpecialCase(ILoadableVehicle vehicle) {
         return specialCase != null && specialCase.apply(vehicle);
     }
 
@@ -84,7 +86,7 @@ public abstract class DockingStation implements Dockable {
      *
      * @param specialCase
      */
-    public void setSpecialCase(Function<LoadableVehicle, Boolean> specialCase) {
+    public void setSpecialCase(Function<ILoadableVehicle, Boolean> specialCase) {
         this.specialCase = specialCase;
     }
 }

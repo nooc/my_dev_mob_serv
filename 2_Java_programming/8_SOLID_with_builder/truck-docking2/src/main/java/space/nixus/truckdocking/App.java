@@ -2,15 +2,11 @@ package space.nixus.truckdocking;
 
 import java.util.Scanner;
 import space.nixus.truckdocking.builders.DocksBuilder;
-import space.nixus.truckdocking.factories.HeavyTruck;
-import space.nixus.truckdocking.factories.LightTruck;
-import space.nixus.truckdocking.factories.Van;
 import space.nixus.truckdocking.factories.LoadableVehicleFactory;
 import space.nixus.truckdocking.models.Box;
 import space.nixus.truckdocking.models.IDocks;
-import space.nixus.truckdocking.models.LoadableVehicle;
+import space.nixus.truckdocking.models.ILoadableVehicle;
 import space.nixus.truckdocking.models.Pallet;
-import space.nixus.truckdocking.models.Truck;
 import space.nixus.truckdocking.models.VehicleType;
 
 /**
@@ -33,7 +29,7 @@ public class App {
             .addLightTruckStation("C")
             .addLightTruckStation("D")
             .addHeavyTruckStation("E")
-            .addSpecialCase("D", (vehicle) -> vehicle instanceof HeavyTruck && vehicle.getTotalWeight() < 9000)
+            .addSpecialCase("D", (vehicle) -> vehicle.getType().equals(VehicleType.HeavyTruck) && vehicle.getTotalWeight() < 9000)
             .build();
     }
 
@@ -61,7 +57,7 @@ public class App {
 
                 1. See docked vehicles.
                 2. Register new vehicle for unloading.
-                3. Exit
+                0. QUIT
 
                 """);
         var input = getInput("Choose");
@@ -77,34 +73,32 @@ public class App {
      * Register new vehicle menu.
      */
     private void registerNewVehicle() {
+        var types = VehicleType.values();
         System.out.format("""
                 Register new vehicle for unloading:
 
                 1. %s
                 2. %s
                 3. %s
+                4. BACK
 
-                """, Van.TYPE, LightTruck.TYPE, HeavyTruck.TYPE);
+                """, types[0], types[1], types[2]);
         // get type
-        var vehicleType = getInput("   Type");
+        var vehicleType = getInt("   Type", 1, 4);
+        if(vehicleType==4) {
+            return;
+        }
         // get weight
-        int weight = Integer.parseInt(getInput(" Weight"));
+        int weight = getInt(" Weight", VehicleType.Van.WEIGHT, 40000);
         // add vehicle if valid weight
-        LoadableVehicle vehicle;
-        if (vehicleType.equals("1") && weight >= Van.UNLOADED_WEIGHT) {
-            vehicle = LoadableVehicleFactory.createVehicle(VehicleType.Van, weight);
-        } else if (vehicleType.equals("2") && weight >= LightTruck.UNLOADED_WEIGHT) {
-            vehicle = LoadableVehicleFactory.createVehicle(VehicleType.LightTruck,weight);
-        } else if (vehicleType.equals("3") && weight >= HeavyTruck.UNLOADED_WEIGHT) {
-            vehicle = LoadableVehicleFactory.createVehicle(VehicleType.HeavyTruck,weight);
-        } else {
-            System.out.format("""
-
-                    Invalid weight:
-                    Van >= %.0f kg
-                    Light/Heavy truck >= %.0f kg
-
-                    """, Van.UNLOADED_WEIGHT, LightTruck.UNLOADED_WEIGHT, HeavyTruck.UNLOADED_WEIGHT);
+        ILoadableVehicle vehicle = LoadableVehicleFactory.createVehicle(VehicleType.values()[vehicleType], weight);
+        // if not valid, print error
+        if (vehicle==null) {
+            System.out.println("\nWeight must equal or exceed unloaded weight:");
+            for(var type : VehicleType.values()) {
+                System.out.format("%s >= %d kg\n", type.LABEL, type.WEIGHT);
+            }
+            System.out.println();
             return;
         }
         // fill cargo hold
@@ -125,9 +119,9 @@ public class App {
      * @param vehicle     A LoadableVehicle
      * @param cargoWeight Cargo weight
      */
-    private void loadWithCargo(LoadableVehicle vehicle, double cargoWeight) {
+    private void loadWithCargo(ILoadableVehicle vehicle, double cargoWeight) {
         // load truck
-        if (vehicle instanceof Truck) {
+        if (!vehicle.getType().equals(VehicleType.Van)) {
             Pallet pallet = new Pallet();
             cargoWeight -= pallet.getWeight(); // subtract bare pallet weight
             // load truck with pallets while remaining cargo > 300kg
@@ -171,6 +165,25 @@ public class App {
             System.out.format("%s: ", prompt);
             var result = scanner.nextLine().strip();
             if (!result.isEmpty()) return result;
+        }
+    }
+
+    /**
+     * Int input prompt.
+     * @param prompt Prompt string
+     * @param min minimum value
+     * @param max maximum value
+     * @return integer within range min,max
+     */
+    private int getInt(String prompt, int min, int max) {
+        while(true) {
+            try {
+                var value = Integer.parseInt(getInput(prompt));
+                if(value>=min && value<=max) {
+                    return value;
+                }
+            }
+            finally {}
         }
     }
 }

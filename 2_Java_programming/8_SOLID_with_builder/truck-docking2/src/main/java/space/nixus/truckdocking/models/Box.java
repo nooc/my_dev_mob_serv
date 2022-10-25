@@ -1,9 +1,9 @@
 package space.nixus.truckdocking.models;
 
 /**
- * Box is an implementation of {@link Cargo Cargo}.
+ * Box is an implementation of {@link ICargo Cargo}.
  */
-public class Box implements Cargo {
+public class Box implements ICargo {
     /**
      * Box weight.
      */
@@ -19,7 +19,7 @@ public class Box implements Cargo {
     }
 
     /**
-     * @see Cargo#getWeight()
+     * @see ICargo#getWeight()
      */
     @Override
     public double getWeight() {

@@ -9,12 +9,12 @@ public interface IDocks {
      * @param vehicle A LoadableVehicle
      * @return True if success, else false
      */
-    boolean dockVehicle(LoadableVehicle vehicle);
+    boolean dockVehicle(ILoadableVehicle vehicle);
 
     /**
      * Get list of occupied stations.
      *
      * @return
      */
-    List<Dockable> getOccupiedStations();
+    List<IDockable> getOccupiedStations();
 }

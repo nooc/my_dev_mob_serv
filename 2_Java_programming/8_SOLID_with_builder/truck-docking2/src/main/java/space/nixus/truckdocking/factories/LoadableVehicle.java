@@ -1,9 +1,14 @@
-package space.nixus.truckdocking.models;
+package space.nixus.truckdocking.factories;
+
+import space.nixus.truckdocking.models.CargoSpace;
+import space.nixus.truckdocking.models.ICargo;
+import space.nixus.truckdocking.models.ILoadableVehicle;
+import space.nixus.truckdocking.models.IVehicle;
 
 /**
- * A LoadableVehicle is a {@link Vehicle} that can be loaded with {@link Cargo}. 
+ * A LoadableVehicle is a {@link IVehicle} that can be loaded with {@link ICargo}. 
  */
-public abstract class LoadableVehicle implements Vehicle {
+abstract class LoadableVehicle implements ILoadableVehicle {
 
     /**
      * Vehicle cargo space.
@@ -26,7 +31,8 @@ public abstract class LoadableVehicle implements Vehicle {
      * @param cargo Cargo to load.
      * @return True if successful, else false.
      */
-    public boolean loadCargo(Cargo cargo) {
+    @Override
+    public boolean loadCargo(ICargo cargo) {
         return cargoSpace.addCargo(cargo);
     }
 
@@ -35,13 +41,14 @@ public abstract class LoadableVehicle implements Vehicle {
      *
      * @return Weight in kg
      */
+    @Override
     public double getCargoWeight() {
         return cargoSpace.getWeight();
     }
 
     /**
      * @return Weight in kg
-     * @see Vehicle.getTotalWeight
+     * @see IVehicle.getTotalWeight
      */
     @Override
     public double getTotalWeight() {
@@ -53,6 +60,8 @@ public abstract class LoadableVehicle implements Vehicle {
      *
      * @return Weight in kg
      */
-    public abstract double getUnloadedWeight();
-
+    @Override
+    public int getUnloadedWeight() {
+        return getType().WEIGHT;
+    }
 }

@@ -3,9 +3,8 @@ package space.nixus.truckdocking.builders;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import space.nixus.truckdocking.models.DockingStation;
 import space.nixus.truckdocking.models.IDocks;
-import space.nixus.truckdocking.models.LoadableVehicle;
+import space.nixus.truckdocking.models.ILoadableVehicle;
 
 public class DocksBuilder {
 
@@ -72,7 +71,7 @@ public class DocksBuilder {
      * @param specialCase Special case test
      * @return this
      */
-    public DocksBuilder addSpecialCase(String name, Function<LoadableVehicle, Boolean> specialCase) {
+    public DocksBuilder addSpecialCase(String name, Function<ILoadableVehicle, Boolean> specialCase) {
         for(var station : stations) {
             if(station.getName().equals(name)) {
                 station.setSpecialCase(specialCase);

@@ -1,8 +1,8 @@
 package space.nixus.truckdocking;
 
-import space.nixus.truckdocking.models.Dockable;
+import space.nixus.truckdocking.models.IDockable;
 import space.nixus.truckdocking.models.IDocks;
-import space.nixus.truckdocking.models.Vehicle;
+import space.nixus.truckdocking.models.IVehicle;
 
 /**
  * Print helper contains console printing functions.
@@ -24,7 +24,7 @@ public final class PrintHelper {
      *
      * @param dockable
      */
-    private static void dockableprintDockableStatus(Dockable dockable) {
+    private static void dockableprintDockableStatus(IDockable dockable) {
         var vehicle = dockable.getVehicle();
         if (vehicle != null) {
             System.out.format("%s: ", dockable.getName());
@@ -37,7 +37,7 @@ public final class PrintHelper {
      *
      * @param vehicle
      */
-    private static void printVehicle(Vehicle vehicle) {
+    private static void printVehicle(IVehicle vehicle) {
         System.out.format("%s with a total weight of %.0f kg.\n",
                 vehicle.getType(),
                 Math.ceil(vehicle.getTotalWeight())

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A cargo space can hold {@link Cargo Cargo} objects up to maxLoad kg.
+ * A cargo space can hold {@link ICargo Cargo} objects up to maxLoad kg.
  */
 public class CargoSpace {
     // Maximum load of cargo space
     private final double maxLoad;
     // List of cargo
-    private final List<Cargo> cargo;
+    private final List<ICargo> cargo;
 
     /**
      * Constructor
@@ -24,7 +24,7 @@ public class CargoSpace {
 
     /**
      * @return weight in kg
-     * @see Cargo.getWeight
+     * @see ICargo.getWeight
      */
     public double getWeight() {
         double totalWeight = 0;
@@ -41,7 +41,7 @@ public class CargoSpace {
      * @param cargo Cargo
      * @return True if added, false if no more capacity.
      */
-    public boolean addCargo(Cargo cargo) {
+    public boolean addCargo(ICargo cargo) {
         if (getWeight() + cargo.getWeight() > maxLoad) {
             return false;
         }
