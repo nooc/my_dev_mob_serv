@@ -28,7 +28,7 @@ public class Game {
             You begin chanting the spell as described in the spell book.
             A cold breeze sweeps across the room and the light is
             suppressed by materialized darkness emanating from the body.
-            You head a horrid, unnatural roar and seconds there after the
+            You hear a horrid, unnatural roar and seconds there after the
             clattering of something moving in the darkness. Before you
             can react, the thing leaps up next to you and whispers in
             your ear, "Wake up..."
