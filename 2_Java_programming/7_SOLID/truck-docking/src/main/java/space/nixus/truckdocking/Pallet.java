@@ -29,7 +29,7 @@ public class Pallet implements Cargo {
 
     /**
      * Add a box cargo to this pallet.
-     * FAils if max weight is exceeded.
+     * Fails if max weight is exceeded.
      *
      * @param box Box cargo
      * @return True on success, else false.
